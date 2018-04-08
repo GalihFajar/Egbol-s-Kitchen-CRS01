@@ -1,7 +1,5 @@
 unit f8;
 
-
-//egbol maho
 interface
 	uses searching,tipe;
 	procedure jualResep(dibuat:string; a:resepnya; var b:InvMentah; var c:InvOlahan; var uang:longint;var pemasukan:longint;var energi:integer);
