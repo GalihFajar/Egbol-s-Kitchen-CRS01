@@ -23,7 +23,7 @@ implementation
 				write('Masukkan resep yang ingin dibuat: ');
 				readln(dibuat);
 				indeks:=1;
-				cariIndeksResep(a,indeks,a.Neff,dibuat);
+				cariIndeksResep(a,indeks,dibuat);
 				if (indeks>a.Neff) then
 					writeln('Resep Tidak ditemukan, ulangi perintah dengan resep yang tepat')
 				else
