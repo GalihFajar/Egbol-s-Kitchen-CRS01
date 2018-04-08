@@ -1,0 +1,11 @@
+Kulit Naga
+5000
+2
+ 
+Kepala Singa
+2000
+4
+
+Telor Kambing
+3000
+2
