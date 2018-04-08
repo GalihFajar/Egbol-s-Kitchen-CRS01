@@ -2,6 +2,7 @@ unit F16;
 //Unit F16-tambahResep
 //Dibuat Oleh : Galih Fajar Fitra Ady/16517258
 //Versi : 08/04/2018
+//Try
 
 {Deskripsi Program}
 {Program berfungsi untuk menambah resep ke array resep yang telah ada}
