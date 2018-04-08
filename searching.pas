@@ -42,11 +42,13 @@ implementation
 	ulangan1:integer; //variabel untuk looping internal fungsi
 	//ALGORITMA LOKAL
 	begin
-		for ulangan1:=1 to num do
+		ulangan1:=1;
+		searchMentah:=False;
+		while (ulangan1<=num) and (not searchMentah) do
 		begin
 			if (a.TabInvMentah[ulangan1].Nama=cari) then
 			searchMentah:=True else
-			searchMentah:=False;
+			ulangan1:=ulangan1+1;
 		end;
 	end;
 
@@ -58,11 +60,13 @@ implementation
 	ulangan2:integer; //variabel untuk looping internal fungsi
 	//ALGORITMA LOKAL
 	begin
-		for ulangan2:=1 to num do
+		ulangan2:=1;
+		searchOlahan:=False;
+		while (ulangan2<=num) and (not searchOlahan) do
 		begin
 			if (a.TabInvOlahan[ulangan2].Nama=cari) then
 			searchOlahan:=True else
-			searchOlahan:=False;
+			ulangan2:=ulangan2+1;
 		end;
 	end;
 
@@ -130,20 +134,20 @@ implementation
 	end;
 
 	function searchSemua(a: resep; b:InvMentah; c:InvOlahan):boolean;
-	{I.S.: Terdapat data resep, inventory bahan mentah dan inventory bahan olahan}
+	{I.S.: Terdapat data resep, inventory bahan mentah dan inventory bashan olahan}
 	{F.S.: Mengembalikan nilai true bila semua bahan yang diperlukan terdapat di inventory}
 	//KAMUS LOKAL
 	var
 	ulangan5:integer; //Variabel untuk looping
+	bool:boolean;
 	//ALGORITMA LOKAL
 	begin
-		ulangan5:=1;
-		searchSemua:=True;
-		while (searchSemua) and (ulangan5<=a.Nbutuh) do
+		bool:=True;
+		for ulangan5:=1 to a.Nbutuh do
 		begin
-			searchSemua:=searchMentah(b,b.Neff,a.Nama) or searchOlahan(c,c.Neff,a.Nama);
-			ulangan5:=ulangan5+1;
+			bool:=(bool and (searchMentah(b,b.Neff,a.Olah[ulangan5]) or searchOlahan(c,c.Neff,a.Olah[ulangan5])));
 		end;
+		searchSemua:=bool;
 	end;
 
 	procedure kurangiSemua(a:resep; var b:InvMentah; var c:InvOlahan);
