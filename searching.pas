@@ -3,24 +3,24 @@ unit searching;
 interface
 	uses tipe;
 
-	function searchMentah(a:InvMentah; num:integer; cari:string):boolean;
-	//Fungsi searchMentah menerima masukan array bahan mentah dan nilai efektifnya
+	function searchMentah(a:InvMentah; cari:string):boolean;
+	//Fungsi searchMentah menerima masukan array bahan mentah 
 	//kemudian mencari apakah bahan mentah (cari) ada di dalam array (inventori)
 
-	function searchOlahan(a:InvOlahan; num:integer; cari:string):boolean;
-	//Fungsi searchOlahan menerima masukan array of bahan olahan dan nilai efektifnya
+	function searchOlahan(a:InvOlahan; cari:string):boolean;
+	//Fungsi searchOlahan menerima masukan array of bahan olahan
 	//kemudian mencari apakah bahan olahan(cari) ada di dalam array (inventory)
 
 	function searchSemua(a: resep; b:InvMentah; c:InvOlahan):boolean;
 	{I.S.: Terdapat data resep, inventory bahan mentah dan inventory bahan olahan}
 	{F.S.: Mengembalikan nilai true bila semua bahan yang diperlukan terdapat di inventory}
 
-	procedure searchKurMentah(var a:InvMentah;num:integer;cari:string);
-	{I.S.: Tersedia array berisi bahan mentah, nilai efektif array, nama bahan mentah yang dicari}
+	procedure searchKurMentah(var a:InvMentah;cari:string);
+	{I.S.: Tersedia array berisi bahan mentah dan nama bahan mentah yang dicari}
 	{F.S.: Akan dicari letak bahan mentah kemudian mengurangi satu kuantitasnya akibat dipakai untuk membuat sesuatu}
 
-	procedure searchKurOlahan(var a:InvOlahan;num:integer;cari:string);
-	{I.S.: Tersedia array berisi bahan olahan, nilai efektifnya dan bahan olahan yang akan dikurangi kuantitasnya}
+	procedure searchKurOlahan(var a:InvOlahan;cari:string);
+	{I.S.: Tersedia array berisi bahan olahan dan bahan olahan yang akan dikurangi kuantitasnya}
 	{F.S.: Akan dicari letak bahan olahan kemudian mengurangi satu kuantitasnya akibat dipakai untuk memasak sesuatu}
 
 	procedure kurangiSemua(a:resep; var b:InvMentah; var c:InvOlahan);
@@ -28,14 +28,14 @@ interface
 	{F.S.: Mengurangi 1 dari masing-masing bahan yang dibutuhkan}
 	{Prekondisi: Semua bahan yang dibutuhkan ada dalam inventori. Telah dicek dengan fungsi searchSemua}
 
-	procedure cariIndeksResep(a:Resepnya; var indeks:integer; jum:integer; cari:string);
+	procedure cariIndeksResep(a:Resepnya; var indeks:integer; cari:string);
 	{I.S.: Tersedia array of resep, resep yang dicari dan indeks awal}
 	{F.S.: nilai indeks berubah sesuai dengan indeks resep yang dicari}
 
 implementation
 
-	function searchMentah(a:InvMentah;num:integer;cari:string):boolean;
-	//Fungsi searchMentah menerima masukan array bahan mentah dan nilai efektifnya
+	function searchMentah(a:InvMentah; cari:string):boolean;
+	//Fungsi searchMentah menerima masukan array bahan mentah
 	//kemudian mencari apakah bahan mentah (cari) ada di dalam array (inventori)
 	//KAMUS LOKAL
 	var
@@ -44,7 +44,7 @@ implementation
 	begin
 		ulangan1:=1;
 		searchMentah:=False;
-		while (ulangan1<=num) and (not searchMentah) do
+		while (ulangan1<=a.Neff) and (not searchMentah) do
 		begin
 			if (a.TabInvMentah[ulangan1].Nama=cari) then
 			searchMentah:=True else
@@ -52,8 +52,8 @@ implementation
 		end;
 	end;
 
-	function searchOlahan(a:InvOlahan;num:integer;cari:string):boolean;
-	//Fungsi searchOlahan menerima masukan array bahan olahan dan nilai efektifnya
+	function searchOlahan(a:InvOlahan;cari:string):boolean;
+	//Fungsi searchOlahan menerima masukan array bahan olahan
 	//kemudian mencari apakah bahan olahan(cari) ada di dalam array (inventory)
 	//KAMUS LOKAL
 	var
@@ -62,7 +62,7 @@ implementation
 	begin
 		ulangan2:=1;
 		searchOlahan:=False;
-		while (ulangan2<=num) and (not searchOlahan) do
+		while (ulangan2<=a.Neff) and (not searchOlahan) do
 		begin
 			if (a.TabInvOlahan[ulangan2].Nama=cari) then
 			searchOlahan:=True else
@@ -70,8 +70,8 @@ implementation
 		end;
 	end;
 
-	procedure searchKurMentah(var a:InvMentah;num:integer;cari:string);
-	{I.S.: Tersedia array bahan mentah, nilai efektif array, nama bahan mentah yang dicari}
+	procedure searchKurMentah(var a:InvMentah;cari:string);
+	{I.S.: Tersedia array bahan mentah dan nama bahan mentah yang dicari}
 	{F.S.: Akan dicari letak bahan mentah kemudian mengurangi satu kuantitasnya akibat dipakai untuk membuat sesuatu}
 	//KAMUS LOKAL
 	var
@@ -81,7 +81,7 @@ implementation
 	begin
 		ulangan3:=1;
 		ketemu:=False;
-		while (not ketemu) and (ulangan3<=num) do
+		while (not ketemu) and (ulangan3<=a.Neff) do
 		begin
 			if (a.TabInvMentah[ulangan3].Nama=cari) then //Nama bahan mentah sama dengan yang dicari
 			begin
@@ -92,8 +92,8 @@ implementation
 		end;
 	end;
 
-	procedure searchKurOlahan(var a:InvOlahan;num:integer;cari:string);
-	{I.S.: Tersedia array berisi bahan olahan, nilai efektifnya dan bahan olahan yang akan dikurangi kuantitasnya}
+	procedure searchKurOlahan(var a:InvOlahan;cari:string);
+	{I.S.: Tersedia array berisi bahan olahan dan bahan olahan yang akan dikurangi kuantitasnya}
 	{F.S.: Akan dicari letak bahan olahan kemudian mengurangi satu kuantitasnya akibat dipakai untuk memasak sesuatu}
 	//KAMUS LOKAL	
 	var
@@ -103,7 +103,7 @@ implementation
 	begin
 		ulangan4:=1;
 		ketemu:=false;
-		while (not ketemu) and (ulangan4<=num) do
+		while (not ketemu) and (ulangan4<=a.Neff) do
 		begin
 			if (a.TabInvOlahan[ulangan4].nama=cari) then
 			begin
@@ -114,7 +114,7 @@ implementation
 		end;
 	end;
 
-	procedure cariIndeksResep(a:Resepnya; var indeks:integer; jum:integer; cari:string);
+	procedure cariIndeksResep(a:Resepnya; var indeks:integer; cari:string);
 	{I.S.: Tersedia array of resep, resep yang dicari dan indeks awal}
 	{F.S.: nilai indeks berubah sesuai dengan indeks resep yang dicari}
 	//KAMUS LOKAL
@@ -124,7 +124,7 @@ implementation
 	begin
 		indeks:=1;
 		ketemu:=False;
-		while (not ketemu) and (indeks<=jum) do
+		while (not ketemu) and (indeks<=a.Neff) do
 		begin
 			if (a.TabResep[indeks].nama=cari) then
 			ketemu:=True
@@ -145,7 +145,7 @@ implementation
 		bool:=True;
 		for ulangan5:=1 to a.Nbutuh do
 		begin
-			bool:=(bool and (searchMentah(b,b.Neff,a.Olah[ulangan5]) or searchOlahan(c,c.Neff,a.Olah[ulangan5])));
+			bool:=(bool and (searchMentah(b,a.Olah[ulangan5]) or searchOlahan(c,a.Olah[ulangan5])));
 		end;
 		searchSemua:=bool;
 	end;
@@ -162,8 +162,8 @@ implementation
 		ulangan6:=1;
 		while (ulangan6<=a.Nbutuh) do
 		begin
-			searchKurMentah(b,b.Neff,a.Olah[ulangan6]);
-			searchKurOlahan(c,c.Neff,a.Olah[ulangan6]);
+			searchKurMentah(b,a.Olah[ulangan6]);
+			searchKurOlahan(c,a.Olah[ulangan6]);
 			ulangan6:=ulangan6+1;
 		end;
 	end;

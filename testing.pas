@@ -21,7 +21,7 @@ begin
 	write(' '); readln(energi);
 	writeln(energi);
 	jualResep(a,b,c,uang,pemasukan,energi);
-	writeln(a.TabResep[1].Nbutuh);
+	
 	writeln(uang);
 	writeln(pemasukan);
 	writeln(energi);
