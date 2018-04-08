@@ -18,7 +18,7 @@ var
 
 begin
 skip:=' ';
-	assign(ext, 'BahanMentah.txt');
+	assign(ext, 'BahanMentah.txt'); //assign file bahan mentah
 	reset(ext);
 	tabBahanMentah.neff:=0;
 	if EOF(ext) then
@@ -29,36 +29,36 @@ skip:=' ';
 		begin
 		while not(EOF(ext)) do
 			begin
-				inc(tabBahanMentah.neff);
-				readln(ext, tabBahanMentah.tabMentah[tabBahanMentah.neff].Nama);
-				readln(ext, tabBahanMentah.tabMentah[tabBahanMentah.neff].Harga);
-				readln(ext, tabBahanMentah.tabMentah[tabBahanMentah.neff].Kadaluarsa);
-				readln(ext, skip);
+				inc(tabBahanMentah.neff); //jika tidak kosong, neff naik
+				readln(ext, tabBahanMentah.tabMentah[tabBahanMentah.neff].Nama); //input ke array
+				readln(ext, tabBahanMentah.tabMentah[tabBahanMentah.neff].Harga);//sama
+				readln(ext, tabBahanMentah.tabMentah[tabBahanMentah.neff].Kadaluarsa);//sama
+				readln(ext, skip);//nyekip file eksternalnya 
 			end;
 			writeln('File BahanMentah.txt terbaca');
 		end;
-	close(ext);
+	close(ext);//close
 	
-	assign(ext,'BahanOlahan.txt');
-	reset(ext);
-	tabBahanOlahan.neff:=0;
+	assign(ext,'BahanOlahan.txt'); //assign file bahan olahan
+	reset(ext); //ngeset lah ya
+	tabBahanOlahan.neff:=0; 
 	if EOF(ext) then
 		begin
-			writeln('File kosong');
+			writeln('File kosong');//kalo kosong
 		end
 	else
 		begin
 		while not (EOF(ext)) do
 			begin
-				inc(tabBahanOlahan.neff);
-				readln(ext, tabBahanOlahan.tabOlahan[tabBahanOlahan.neff].Nama);
-				readln(ext, tabBahanOlahan.tabOlahan[tabBahanOlahan.neff].Harga);
+				inc(tabBahanOlahan.neff); //kalo ga kosong, berarti neffnya nambah
+				readln(ext, tabBahanOlahan.tabOlahan[tabBahanOlahan.neff].Nama); //input ke array
+				readln(ext, tabBahanOlahan.tabOlahan[tabBahanOlahan.neff].Harga); 
 				readln(ext, tabBahanOlahan.tabOlahan[tabBahanOlahan.neff].NButuh);
 					for j:=1 to tabBahanOlahan.tabOlahan[tabBahanOlahan.neff].NButuh do
 						begin
 							readln(ext, tabBahanOlahan.tabOlahan[tabBahanOlahan.neff].bahan[j]);
 						end;
-				readln(ext, skip);
+				readln(ext, skip); //nyekip
 			end;
 			writeln('File BahanOlahan.txt terbaca');
 		end;
