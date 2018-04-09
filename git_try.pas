@@ -1,3 +1,0 @@
-begin
-	coba 
-end.
