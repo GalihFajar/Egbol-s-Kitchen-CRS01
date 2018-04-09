@@ -81,7 +81,7 @@ skip:=' ';
 				readln(ext, tabInvenMentah.TabInvMentah[tabInvenMentah.neff].Jumlah);
 				readln(ext, skip);
 			end;
-			writeln('File InventoryMentah.txt sudah terbaca');
+			writeln('File InvMentah.txt sudah terbaca');
 		end;
 	close(ext);
 	
@@ -102,7 +102,7 @@ skip:=' ';
 				readln(ext, tabInvenOlahan.TabInvOlahan[tabInvenOlahan.neff].Jumlah);
 				readln(ext, skip);
 			end;
-			writeln('File InventoryOlahan.txt sudah terbaca');
+			writeln('File InvOlahan.txt sudah terbaca');
 		end;
 	close(ext);
 	
