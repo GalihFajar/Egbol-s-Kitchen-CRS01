@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Nasi Goreng Sapi
 15000
 2
@@ -25,3 +26,10 @@ Tomat
 Telur
 Garam
 Lada
+=======
+cicak goreng
+100000
+2
+Cicak
+Air
+>>>>>>> 19a9d9059e0ec620099381694d4c3725aade6df9
