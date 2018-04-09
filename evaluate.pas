@@ -14,6 +14,14 @@ interface
 	{I.S.: Tersedia array berisi inventori Mentah}
 	{F.S.: mendelete bahan Mentah yang kadaluarsa}
 
+	function isKadaluarsaOlahan(a:InventoryOlahan;b:Tanggal):boolean;
+	{I.S.: Tersedia suatu tipe bahan olahan dan tanggal HARI INI}
+	{F.S.: Memberikan output true ketika bahan olahan kadaluarsa dan false ketika belum kadaluarsa}
+
+	function isKadaluarsaMentah(a:InventoryMentah;b:Tanggal;c:Mentah):boolean;
+	{I.S.: Tersedia suatu tipe bahan mentah dan tanggal HARI INI}
+	{F.S.: Memberikan output true ketika bahan mentah kadaluarsa dan false ketika belum kadaluarsa}
+
 
 implementation
 	
