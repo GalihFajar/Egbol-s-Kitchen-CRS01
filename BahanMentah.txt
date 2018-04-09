@@ -1,11 +1,31 @@
-Kulit Naga
+Daging Sapi
 5000
-2
- 
-Kepala Singa
-2000
-4
+10
 
-Telor Kambing
-3000
-2
+Kangkung
+1000
+10
+
+Lada
+200
+100
+
+Bawang Putih
+500
+30
+
+Air
+500
+100
+
+Es Krim
+2000
+10
+
+Kecap
+400
+300
+
+Beras
+500
+100
