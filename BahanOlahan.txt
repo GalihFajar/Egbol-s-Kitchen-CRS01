@@ -1,11 +1,14 @@
-Peler Naga Goreng
-10000
+Nasi Putih
+1200
 2
-Peler Naga
-Minyak Goreng
+Beras
+Air
 
-Oseng Kepala Singa
-5000
-2
-Kepala Singa
-Kulit Naga
+Nasi Goreng
+2000
+5
+Beras
+Air
+Bawang Putih
+Lada
+Kecap
