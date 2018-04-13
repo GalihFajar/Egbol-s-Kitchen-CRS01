@@ -90,7 +90,6 @@ interface
 
 var
 	daftarresep : resepnya;
-	InvMax : longint;
 
 implementation
 
