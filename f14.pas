@@ -18,7 +18,7 @@ var
   temp:string;
   tukar:Array [1..20] of String;
 
-//ALGORITMA
+// ALGORITMA
 begin
   for i:=Input.neff downto 2 do
   begin
