@@ -4,6 +4,7 @@ var
   b : InvOlahan;
 begin
   a.Neff := 20;
+  b.Neff := 20;
   a.TabInvMentah[1].nama := 'Cecak';
   a.TabInvMentah[2].nama := 'Egbol';
   a.TabInvMentah[3].nama := 'Anu Egbol';
@@ -17,7 +18,7 @@ begin
   daftarresep.TabResep[1].NButuh := 2;
   daftarresep.TabResep[1].olah[1] := 'Pisang';
   daftarresep.TabResep[1].olah[2] := 'Susu';
-  //TambahResep(a,b,daftarresep.TabResep);
+  TambahResep(a,b,daftarresep.TabResep);
   writeln(b.tabinvolahan[2].nama);
   writeln(searchMentah(a,'Anu Egbol'));
   writeln(searchMentah(a,'Sahabat Egbol'));
