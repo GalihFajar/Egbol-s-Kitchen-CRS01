@@ -95,7 +95,7 @@ rewrite(ext);
 			writeln(ext, tabSimulasi.Tab[i].TotalResepJual);
 			writeln(ext, tabSimulasi.Tab[i].TotalPemasukan);
 			writeln(ext, tabSimulasi.Tab[i].TotalPengeluaran);
-			writeln(ext, tabSimulasi.Tab[i].TotalUang);
+			writeln(ext, tabSimulasi.Tab[i].TotalPendapatan);
 			writeln(ext, skip);
 		end;
 		close(ext);
