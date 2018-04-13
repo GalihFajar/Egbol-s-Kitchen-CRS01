@@ -17,7 +17,7 @@ var
   search:string;
   status:boolean;
 
-//ALGORITMA
+// ALGORITMA
 begin
   write('Masukkan Nama Resep Yang Akan Dicari : ');
   readln(search);
