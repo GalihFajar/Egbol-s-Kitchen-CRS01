@@ -4,7 +4,7 @@ unit f15;
 interface
 
 // Unit yang dipergunakan oleh unit ini
-uses tipe,f1load;
+uses tipe;
 
 // Prosedur yang tersedia di unit ini
 procedure CariResep(var Input: resepnya);
