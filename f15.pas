@@ -11,7 +11,7 @@ implementation
 
 procedure CariResep(var Input: resepnya);
 
-//KAMUS
+// KAMUS
 var
   i,j:integer;
   search:string;
