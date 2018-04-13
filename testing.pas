@@ -16,7 +16,6 @@ pemasukan:longint;
 begin
 	uang:=100;
 	pemasukan:=0;
-	writeln('Testing cok');
 	load(d,f,b,c,a,e);
 	write(' '); readln(energi);
 	writeln(energi);
