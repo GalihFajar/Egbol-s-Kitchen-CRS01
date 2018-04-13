@@ -1,14 +1,13 @@
-unit f3f4;
+unit f3Simulasi;
 
 
 interface
-uses tipe;
-procedure simulasi(var tabBahanMentah : Mentah; var tabBahanOlahan : Olahan; var tabInvenMentah : InvMentah; var tabInvenOlahan : InvOlahan; 
+procedure simulasi(var tabBahanMentah : Mentah; var tabBahanOlahan : Olahan; var tabInvenMentah : InvMentah; var tabInvenOlahan : InvOlahan;
 				var tabResepnya : Resepnya; var tabSimulasi : tSimulasi; reseptemp : tempresep);
 
-implementation 
+implementation
 
-procedure simulasi(var tabBahanMentah : Mentah; var tabBahanOlahan : Olahan; var tabInvenMentah : InvMentah; var tabInvenOlahan : InvOlahan; 
+procedure simulasi(var tabBahanMentah : Mentah; var tabBahanOlahan : Olahan; var tabInvenMentah : InvMentah; var tabInvenOlahan : InvOlahan;
 				var tabResepnya : Resepnya; var tabSimulasi : tSimulasi; reseptemp:tempresep);
 var
 	n	: string;
@@ -52,10 +51,10 @@ while not(n='Stop') do
 										TambahResep(tabInvenMentah,tabInvenOlahan,tempresep);
 									end;
 			//f17 belom
-		end;	
+		end;
 		write('>>');
 		readln(n);
 	end;
+		Lihatstatistik(tabSimulasi);
 
 end.
-
