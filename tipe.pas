@@ -80,7 +80,7 @@ interface
 		TotalResepJual		: Integer;
 		TotalPemasukan		: LongInt;
 		TotalPengeluaran	: LongInt;
-		TotalUang			: LongInt;
+		TotalPendapatan		: LongInt;
 	end;
 
 	type tSimulasi = record

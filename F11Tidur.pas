@@ -15,7 +15,7 @@ interface
 	{I.S. tanggal tertentu}
 	{F.S. ganti tanggal ke hari esoknya dengan memanfaatkan fungsi HariMaks}
 	
-	procedure Tidur(var date:Tanggal; var invOl:InvOlahan; var invMen:InvMentah; raw:Mentah; energi:integer);
+	procedure Tidur(var date:Tanggal; var invOl:InvOlahan; var invMen:InvMentah; raw:Mentah; energi:integer;var harihidup:integer);
 	{Spesifikasi
 	* > parameter dengan tipe Tanggal, InvOlahan, InvMentah, Mentah dan integer
 	* > mengubah tanggal ke hari esoknya dengan fungsi GantiHari
@@ -81,7 +81,7 @@ implementation
 	end;
 	
 	//PROCEDURE Tidur
-	procedure Tidur(var date:Tanggal; var invOl:InvOlahan; var invMen:InvMentah; raw:Mentah; energi:integer);
+	procedure Tidur(var date:Tanggal; var invOl:InvOlahan; var invMen:InvMentah; raw:Mentah; energi:integer; var harihidup:integer);
 	{Spesifikasi
 	* > parameter dengan tipe Tanggal, InvOlahan, InvMentah, Mentah dan integer
 	* > mengubah tanggal ke hari esoknya dengan fungsi GantiHari
@@ -92,4 +92,5 @@ implementation
 		energi:=10; //mengubah energi ke 10
 		evaluateInvOlahan(InvOl,date); //menghapus bahan makanan yang kadaluarsa dari inventori olahan
 		evaluateInvMentah(InvMen,date,raw); //menghapus bahan makanan yang kadaluarsa dari inventori mentah
+		harihidup:=harihidup+1;
 	end;

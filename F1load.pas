@@ -4,12 +4,12 @@ interface
 
 uses tipe;
 procedure load (var tabBahanMentah : Mentah; var tabBahanOlahan : Olahan; var tabInvenMentah : InvMentah; var tabInvenOlahan : InvOlahan; 
-				var tabResepnya : Resepnya; var tabSimulasi : tSimulasi);
+				var tabResepnya : Resepnya; var tabSimulasi : tSimulasi; reseptemp:tempresep);
 
 implementation
 
 procedure load (var tabBahanMentah : Mentah; var tabBahanOlahan : Olahan; var tabInvenMentah : InvMentah; var tabInvenOlahan : InvOlahan; 
-				var tabResepnya : Resepnya; var tabSimulasi : tSimulasi);
+				var tabResepnya : Resepnya; var tabSimulasi : tSimulasi; reseptemp:tempresep);
 
 var
 	ext		: Text;
