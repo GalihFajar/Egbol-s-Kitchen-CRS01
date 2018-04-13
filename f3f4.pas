@@ -1,7 +1,8 @@
-unit f3Simulasi;
+unit f3f4;
 
 
 interface
+uses tipe;
 procedure simulasi(var tabBahanMentah : Mentah; var tabBahanOlahan : Olahan; var tabInvenMentah : InvMentah; var tabInvenOlahan : InvOlahan; 
 				var tabResepnya : Resepnya; var tabSimulasi : tSimulasi; reseptemp : tempresep);
 
