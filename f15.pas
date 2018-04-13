@@ -11,11 +11,13 @@ implementation
 
 procedure CariResep(var Input: resepnya);
 
+//KAMUS
 var
   i,j:integer;
   search:string;
   status:boolean;
 
+//ALGORITMA
 begin
   write('Masukkan Nama Resep Yang Akan Dicari : ');
   readln(search);
