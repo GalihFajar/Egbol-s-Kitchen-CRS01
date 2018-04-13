@@ -55,6 +55,7 @@ while not(n='Stop') do
 		write('>>');
 		readln(n);
 	end;
+		Lihatstatistik(tabSimulasi);
 
 end.
 
