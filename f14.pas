@@ -11,12 +11,14 @@ implementation
 
 procedure TampilkanResep(var Input: resepnya);
 
+//KAMUS
 var
   i,j,x:integer;
   n:longint;
   temp:string;
   tukar:Array [1..20] of String;
 
+//ALGORITMA
 begin
   for i:=Input.neff downto 2 do
   begin
