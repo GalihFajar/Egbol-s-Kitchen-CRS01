@@ -11,7 +11,7 @@ implementation
 
 procedure TampilkanResep(var Input: resepnya);
 
-//KAMUS
+// KAMUS
 var
   i,j,x:integer;
   n:longint;
