@@ -81,7 +81,7 @@ skip:=' ';
 				readln(ext, tabInvenMentah.TabInvMentah[tabInvenMentah.neff].Jumlah);
 				readln(ext, skip);
 			end;
-			writeln('File InvMentah.txt sudah terbaca');
+			writeln('File InventoryMentah.txt sudah terbaca');
 		end;
 	close(ext);
 	
@@ -102,7 +102,7 @@ skip:=' ';
 				readln(ext, tabInvenOlahan.TabInvOlahan[tabInvenOlahan.neff].Jumlah);
 				readln(ext, skip);
 			end;
-			writeln('File InvOlahan.txt sudah terbaca');
+			writeln('File InventoryOlahan.txt sudah terbaca');
 		end;
 	close(ext);
 	
@@ -154,7 +154,7 @@ skip:=' ';
 					readln(ext, tabSimulasi.Tab[tabSimulasi.neff].TotalResepJual);
 					readln(ext, tabSimulasi.Tab[tabSimulasi.neff].TotalPemasukan);
 					readln(ext, tabSimulasi.Tab[tabSimulasi.neff].TotalPengeluaran);
-					readln(ext, tabSimulasi.Tab[tabSimulasi.neff].TotalUang);
+					readln(ext, tabSimulasi.Tab[tabSimulasi.neff].TotalPendapatan);
 					readln(ext, skip);
 				end;
 				writeln('File Simulasi.txt terbaca');

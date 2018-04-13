@@ -18,7 +18,7 @@ unit F16;
 
 interface
   uses tipe;
-  procedure TambahResep(x : InvMentah; y : InvOlahan ;var masukan : tempResep); //Prosedur utama menambah resep.
+  procedure tambahResep(x : InvMentah; y : InvOlahan ;var masukan : tempResep); //Prosedur utama menambah resep.
   procedure TambahBahan(max: integer;batas : integer;x : InvMentah; y : InvOlahan; var masukan : tempResep); //Prosedur menambah bahan mentah.
   function CekUjung(masukan : tempResep):integer; //Prosedur cek jumlah resep yang tersedia.
 implementation
@@ -74,7 +74,7 @@ implementation
       until(masukan[i].Nama = '') //Menambah NEff sampai array kosong.
     end;
 
-  procedure TambahResep(x : InvMentah; y : InvOlahan ;var masukan : tempResep);
+  procedure tambahResep(x : InvMentah; y : InvOlahan ;var masukan : tempResep);
     var
       max : integer;
     begin

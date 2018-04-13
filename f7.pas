@@ -47,9 +47,9 @@ implementation
 							else			//Tidak kadaluarsa dan tidak habis
 								begin
 									repeat
-									write('Masukkan jumlah bahan olahan yang akan dijual (maksimal kuantitas penjualan : ',a.TabInvOlahan[u].jumlah ,'): ');
-									//Meminta masukan kuantitas bahan olahan yang akan dijual
-									readln(jumlah); //membaca kuantitas bahan olahan
+										write('Masukkan jumlah bahan olahan yang akan dijual (maksimal kuantitas penjualan : ',a.TabInvOlahan[u].jumlah ,'): ');
+										//Meminta masukan kuantitas bahan olahan yang akan dijual
+										readln(jumlah); //membaca kuantitas bahan olahan
 									until ((jumlah<=a.TabInvOlahan[u].jumlah) and (jumlah>0));		//Mengulangi sampai inputan jumlah valid
 
 									a.TabInvOlahan[u].jumlah:=a.TabInvOlahan[u].jumlah-jumlah;	//Mengurangi jumlah di inventori dengan jumlah yang dijual
