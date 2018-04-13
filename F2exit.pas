@@ -4,12 +4,12 @@ interface
 
 uses tipe;
 procedure exit (var tabBahanMentah : Mentah; var tabBahanOlahan : Olahan; var tabInvenMentah : InvMentah; var tabInvenOlahan : InvOlahan; 
-				var tabResepnya : Resepnya; var tabSimulasi : tSimulasi);
+				var tabResepnya : Resepnya; var tabSimulasi : tSimulasi; reseptemp:tempresep);
 
 implementation
 
 procedure exit (var tabBahanMentah : Mentah; var tabBahanOlahan : Olahan; var tabInvenMentah : InvMentah; var tabInvenOlahan : InvOlahan; 
-				var tabResepnya : Resepnya; var tabSimulasi : tSimulasi);
+				var tabResepnya : Resepnya; var tabSimulasi : tSimulasi; reseptemp:tempresep);
 
 var
 	ext		: Text;
@@ -95,7 +95,7 @@ rewrite(ext);
 			writeln(ext, tabSimulasi.Tab[i].TotalResepJual);
 			writeln(ext, tabSimulasi.Tab[i].TotalPemasukan);
 			writeln(ext, tabSimulasi.Tab[i].TotalPengeluaran);
-			writeln(ext, tabSimulasi.Tab[i].TotalUang);
+			writeln(ext, tabSimulasi.Tab[i].TotalPendapatan);
 			writeln(ext, skip);
 		end;
 		close(ext);
