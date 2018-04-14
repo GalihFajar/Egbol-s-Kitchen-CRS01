@@ -6,7 +6,7 @@ interface
 
 	uses tipe; 		   // menggunakan unit yang berisi tipe
 	
-	procedure belibahan ( t : tanggal ; var uang : longint; var energi : longint; var bahan : InvMentah ; var bmentah : Mentah ; var pengeluaran : longint );
+	procedure belibahan ( t : tanggal ; var uang : longint; var energi : integer; var bahan : InvMentah ; var bmentah : Mentah ; var pengeluaran : longint );
 	{I.S.: tersedia uang, tanggal, daftar bahan mentah, inventori bahan mentah}
 	{F.S.: Resep berhasil dibuat bila bahan yang ingin dibeli ada di daftar bahan mentah. Menambah inventori bahan mentah dan mengurangi energi & uang}
 	function CekUjung(masukan : InvMentah):integer;
@@ -28,7 +28,7 @@ implementation
 				until(masukan.TabInvMentah[i].Nama = '') //Menambah NEff sampai array kosong.
 		end;
 	
-	procedure belibahan ( t : tanggal ; var uang : longint; var energi : longint; var bahan : InvMentah ; var bmentah : Mentah ; var pengeluaran : longint);
+	procedure belibahan ( t : tanggal ; var uang : longint; var energi : integer; var bahan : InvMentah ; var bmentah : Mentah ; var pengeluaran : longint);
 	{I.S.: tersedia uang, tanggal, daftar bahan mentah, inventori bahan mentah}
 	{F.S.: Resep berhasil dibuat bila bahan yang ingin dibeli ada di daftar bahan mentah. Menambah inventori bahan mentah dan mengurangi energi & uang}
 		var // kamus lokal
