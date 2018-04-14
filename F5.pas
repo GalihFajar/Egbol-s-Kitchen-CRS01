@@ -60,34 +60,31 @@ implementation
 					if ( sama = false ) then // jika bahan yang ingin dibeli tidak ada di list bahan mentah
  						begin
 							writeln('Nama bahan tidak ada');
+							energi := energi-1;		
 						end
 					else // sama = true, ada nama bahan yang diinput user didalam data bahanmentah
 						begin
 							writeln('Kuantitas : ');readln(kuantitas);
 							writeln('Total Harga : ');writeln(kuantitas*harga);
+							if ( uang >= kuantitas*harga ) then // jika uang yang dimiliki tidak cukup untuk membeli bahan
+								begin
+									writeln('Pembelian Sukses');
+									bahan.TabInvMentah[max].Tgl := t;
+									bahan.TabInvMentah[max].Jumlah := kuantitas;
+									
+									uang := uang - (kuantitas*harga);
+									pengeluaran := pengeluaran + (kuantitas*harga);
+									energi := energi-1;		
+								end
+							else // ( uang < harga )
+								begin 
+									writeln('Pembelian gagal, silahkan coba lagi');
+									energi := energi-1;		
+								end;
 						end;
-			
-			if ( uang >= kuantitas*harga ) then // jika uang yang dimiliki tidak cukup untuk membeli bahan
-				begin
-					writeln('Pembelian Sukses');
-				end
-			else // ( uang < harga )
-				begin 
-					writeln('Pembelian gagal, silahkan coba lagi');
-				end;
-			
-			if ( uang >= kuantitas*harga ) then // jika pembelian berhasil
-				begin
-					bahan.TabInvMentah[max].Tgl := t;
-					bahan.TabInvMentah[max].Jumlah := kuantitas;
-					energi := energi-1;
-					uang := uang - (kuantitas*harga);
-					pengeluaran := pengeluaran + (kuantitas*harga);
-				end;   
-			end;				
-							
-		end;
+					end;
 
+		end;
 end.				
 			
 			

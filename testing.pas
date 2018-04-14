@@ -14,8 +14,8 @@ uang:longint;
 pemasukan,pengeluaran:longint;
 t:tanggal;
 countmakan,countist:integer;
-emax:integer;
-hhidup:integer;
+emax,aktivitas:integer;
+hhidup,kapasitas:integer;
 
 begin
 	uang:=10000;
@@ -83,18 +83,17 @@ begin
 	writeln();
 
 	writeln('====Testing F16====');
-	tambahResep(b,c,a);
+	tambahResep(d,f,a);
 	TampilkanResep(a);
 
 	writeln('====Testing F11====');
-	Tidur(t,c,b,d,energi,hhidup);
+	aktivitas:=0;
+	Tidur(t,c,b,d,energi,hhidup,countmakan,countist,aktivitas);
 	writeln('energi: ',energi);
 	writeln('tanggal: ',t.hari);
 	writeln('Bulan: ',t.bulan);
 	writeln('Tahun: ',t.tahun);
-
-	writeln('====Testing F12====');
-	LihatStatistik(tSimulasi.Tab[1],t,hhidup,energi,)
+	writeln(aktivitas,' ini aktivitas(tidur)');
 
 	
 	writeln(uang);

@@ -18,7 +18,7 @@ begin
   daftarresep.TabResep[1].NButuh := 2;
   daftarresep.TabResep[1].olah[1] := 'Pisang';
   daftarresep.TabResep[1].olah[2] := 'Susu';
-  TambahResep(a,b,daftarresep);
+  TambahResep(a,b,daftarresep.TabResep);
   writeln(b.tabinvolahan[2].nama);
   writeln(searchMentah(a,'Anu Egbol'));
   writeln(searchMentah(a,'Sahabat Egbol'));

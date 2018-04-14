@@ -15,7 +15,7 @@ interface
 	{I.S. tanggal tertentu}
 	{F.S. ganti tanggal ke hari esoknya dengan memanfaatkan fungsi HariMaks}
 	
-	procedure Tidur(var date:Tanggal; var invOl:InvOlahan; var invMen:InvMentah; raw:Mentah; energi:integer;var harihidup,countmakan,countistirahat,aktivitas:integer);
+	procedure Tidur(var date:Tanggal; var invOl:InvOlahan; var invMen:InvMentah; raw:Mentah;var energi:integer;var harihidup,countmakan,countistirahat,aktivitas:integer);
 	{Spesifikasi
 
 	Prosedur ini hanya dapat dijalankan apabila user telah beraktivitas pada hari tersebut
@@ -85,7 +85,7 @@ implementation
 	end;
 	
 	//PROCEDURE Tidur
-	procedure Tidur(var date:Tanggal; var invOl:InvOlahan; var invMen:InvMentah; raw:Mentah; energi:integer; var harihidup,countmakan,countistirahat,aktivitas:integer);
+	procedure Tidur(var date:Tanggal; var invOl:InvOlahan; var invMen:InvMentah; raw:Mentah; var energi:integer; var harihidup,countmakan,countistirahat,aktivitas:integer);
 	{Spesifikasi
 	* > parameter dengan tipe Tanggal, InvOlahan, InvMentah, Mentah dan integer
 	* > mengubah tanggal ke hari esoknya dengan fungsi GantiHari
