@@ -2,14 +2,14 @@ unit f8;
 
 interface
 	uses searching,tipe,evaluate;
-	procedure jualResep(t:tanggal; a:resepnya; var b:InvMentah; var c:InvOlahan; d:mentah; var uang:longint;var pemasukan:longint;var energi:integer);
+	procedure jualResep(t:tanggal; a:resepnya; var b:InvMentah; var c:InvOlahan; d:mentah; var uang:longint;var pemasukan:longint;var energi:integer, var banyakResep:integer);
 	{I.S.: tersedia resep yang ingin dibuat, daftar resep, inventory bahan mentah, inventori bahan olahan, uang dan energi}
-	{F.S.: Resep berhasil dibuat bila bahan mentah dan olahan ada. Menambah pemasukan dan mengurangi energi}
+	{F.S.: Resep berhasil dibuat bila bahan mentah dan olahan ada. Menambah pemasukan dan mengurangi energi, Menambah jumlah penjualan resep total}
 
 implementation
-	procedure jualResep(t:tanggal; a:resepnya; var b:InvMentah; var c:InvOlahan; d:mentah; var uang:longint;var pemasukan:longint;var energi:integer);
+	procedure jualResep(t:tanggal; a:resepnya; var b:InvMentah; var c:InvOlahan; d:mentah; var uang:longint;var pemasukan:longint;var energi:integer, var banyakResep:integer);
 	{I.S.: tersedia resep yang ingin dibuat, daftar resep, inventory bahan mentah, inventori bahan olahan, uang dan energi}
-	{F.S.: Resep berhasil dibuat bila bahan mentah dan olahan ada. Menambah pemasukan dan mengurangi energi}
+	{F.S.: Resep berhasil dibuat bila bahan mentah dan olahan ada. Menambah pemasukan dan mengurangi energi, Menambah jumlah penjualan resep total}
 	//KAMUS LOKAL
 	var
 	indeks:integer;
@@ -37,6 +37,7 @@ implementation
 						uang:=uang+a.TabResep[indeks].harga;		//Menambah uang
 						pemasukan:=pemasukan+a.TabResep[indeks].harga;	//Menambah pemasukan
 						energi:=energi-1;							//Mengurangi energi
+						banyakResep:=banyakResep+1;
 					end;
 				end;
 			end;

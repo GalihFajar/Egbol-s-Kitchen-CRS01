@@ -4,15 +4,15 @@ unit f7;
 interface
 	uses tipe,evaluate;
 
-	procedure jualOlahan(var a:InvOlahan; b:Tanggal; c:Olahan; var pemasukan:longint; var uang:longint; var energi:integer);
+	procedure jualOlahan(var a:InvOlahan; b:Tanggal; c:Olahan; var pemasukan:longint; var uang:longint; var energi:integer, var banyakJual:integer);
 	{I.S.: Tersedia inventori olahan, tanggal simulasi, pemasukan, uang dan energi chef}
-	{F.S.: Menjual bahan olahan yang ada diinventori, menambah pemasukan dan uang serta mengurangi energi chef}
+	{F.S.: Menjual bahan olahan yang ada diinventori, menambah pemasukan dan uang serta mengurangi energi chef, Menambah jumlah kuantitas total penjualan barang olahan}
 
 implementation
 	
-	procedure jualOlahan(var a:InvOlahan; b:Tanggal; c:Olahan; var pemasukan:longint; var uang:longint; var energi:integer);
+	procedure jualOlahan(var a:InvOlahan; b:Tanggal; c:Olahan; var pemasukan:longint; var uang:longint; var energi:integer, var banyakJual:integer;);
 	{I.S.: Tersedia inventori olahan, tanggal simulasi, pemasukan, uang dan energi chef}
-	{F.S.: Menjual bahan olahan yang ada diinventori, menambah pemasukan dan uang serta mengurangi energi chef}
+	{F.S.: Menjual bahan olahan yang ada diinventori, menambah pemasukan dan uang serta mengurangi energi chef, Menambah jumlah kuantitas total penjualan barang olahan}
 	//KAMUS LOKAL
 	var
 	dijual:string;				//Variabel yang menampung bahan olahan yang akan dijual
@@ -65,6 +65,7 @@ implementation
 												ketemu2:=True;										//Variabel perulangan berubah menjadi true
 												uang:=uang+jumlah*c.TabOlahan[v].Harga;				//Menambah uang dengan harga jual dikali kuantitas yang dijual
 												pemasukan:=pemasukan+jumlah*c.TabOlahan[v].Harga;	//Menambah pemasukan
+												banyakJual:=banyakJual+jumlah;
 											end
 										else
 											v:=v+1;							//Increment variabel perulangan 2
