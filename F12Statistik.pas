@@ -5,26 +5,23 @@ unit F12Statistik;
 interface
 	uses tipe;
 	
-	procedure LihatStatistik(var simul:Simulasi;date:Tanggal;harihidup,energi,kapasitas,mentahbeli,olahbuat,olahjual,resepjual:integer;pemasukan,pengeluaran,uang:longint);
+	procedure LihatStatistik(var simul:Simulasi;harihidup,energi,kapasitas,mentahbeli,olahbuat,olahjual,resepjual:integer;pemasukan,pengeluaran,uang:longint);
 	{Spesifikasi procedure:
 	* >menampilkan data statistik permainan}
 	
-	procedure AssignSimulasi(var simul:Simulasi;date:Tanggal;harihidup,energi,kapasitas,mentahbeli,olahbuat,olahjual,resepjual:integer;pemasukan,pengeluaran,uang:longint);
+	procedure AssignSimulasi(var simul:Simulasi;harihidup,energi,kapasitas,mentahbeli,olahbuat,olahjual,resepjual:integer;pemasukan,pengeluaran,uang:longint);
 	{Spesifikasi procedure:
 	* >assigment nilai-nilai yang digunakan ke variabel simulasi}
 	
 implementation
 
 	//PROCEDURE AssignSimulasi
-	procedure AssignSimulasi(var simul:Simulasi;date:Tanggal;harihidup,energi,kapasitas,mentahbeli,olahbuat,olahjual,resepjual:integer;pemasukan,pengeluaran,uang:longint);
+	procedure AssignSimulasi(var simul:Simulasi;harihidup,energi,kapasitas,mentahbeli,olahbuat,olahjual,resepjual:integer;pemasukan,pengeluaran,uang:longint);
 	{Spesifikasi procedure:
 	* >assigment nilai-nilai yang digunakan ke variabel simulasi}
 	//ALGORITMA LOKAL
 	begin
 		//assignment
-		simul.Tgl.hari:=date.hari;
-		simul.Tgl.bulan:=date.bulan;
-		simul.Tgl.tahun:=date.tahun;
 		simul.HariHidup:=harihidup;
 		simul.Energi:=energi;
 		simul.KapasitasInventory:=kapasitas;
@@ -38,14 +35,14 @@ implementation
 	end;
 	
 	//PROCEDURE LihatStatistik
-	procedure LihatStatistik(var simul:Simulasi;date:Tanggal;harihidup,energi,kapasitas,mentahbeli,olahbuat,olahjual,resepjual:integer;pemasukan,pengeluaran,uang:longint);
+	procedure LihatStatistik(var simul:Simulasi;harihidup,energi,kapasitas,mentahbeli,olahbuat,olahjual,resepjual:integer;pemasukan,pengeluaran,uang:longint);
 	{Spesifikasi procedure:
 	* >menampilkan data statistik permainan}
 	//KAMUS LOKAL
 	
 	//ALGORITMA LOKAL
 	begin
-		AssignSimulasi(simul,date,harihidup,energi,kapasitas,mentahbeli,olahbuat,olahjual,resepjual,pemasukan,pengeluaran,uang);
+		AssignSimulasi(simul,harihidup,energi,kapasitas,mentahbeli,olahbuat,olahjual,resepjual,pemasukan,pengeluaran,uang);
 		writeln('Statistik simulasi Anda');
 		writeln('Nomor Simulasi :', simul.Nomor);
 		writeln('Tanggal : ',simul.Tgl.hari,'/',simul.Tgl.bulan,'/',(simul.Tgl.tahun mod 100));

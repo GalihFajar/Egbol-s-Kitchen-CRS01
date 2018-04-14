@@ -15,12 +15,16 @@ interface
 	{I.S. tanggal tertentu}
 	{F.S. ganti tanggal ke hari esoknya dengan memanfaatkan fungsi HariMaks}
 	
-	procedure Tidur(var date:Tanggal; var invOl:InvOlahan; var invMen:InvMentah; raw:Mentah; energi:integer;var harihidup:integer);
+	procedure Tidur(var date:Tanggal; var invOl:InvOlahan; var invMen:InvMentah; raw:Mentah; energi:integer;var harihidup,countmakan,countistirahat,aktivitas:integer);
 	{Spesifikasi
+
+	Prosedur ini hanya dapat dijalankan apabila user telah beraktivitas pada hari tersebut
+
 	* > parameter dengan tipe Tanggal, InvOlahan, InvMentah, Mentah dan integer
 	* > mengubah tanggal ke hari esoknya dengan fungsi GantiHari
 	* > menghapus makanan kadaluarsa dengan memanfaatkan fungsi evaluateInvOlahan dan evaluateInvMentah
-	* > mengubah energi (integer) ke 10 }
+	* > mengubah energi (integer) ke 10 
+	* > set countmakan dan countistirahat ke 0}
 	
 implementation
 
@@ -81,18 +85,28 @@ implementation
 	end;
 	
 	//PROCEDURE Tidur
-	procedure Tidur(var date:Tanggal; var invOl:InvOlahan; var invMen:InvMentah; raw:Mentah; energi:integer; var harihidup:integer);
+	procedure Tidur(var date:Tanggal; var invOl:InvOlahan; var invMen:InvMentah; raw:Mentah; energi:integer; var harihidup,countmakan,countistirahat,aktivitas:integer);
 	{Spesifikasi
 	* > parameter dengan tipe Tanggal, InvOlahan, InvMentah, Mentah dan integer
 	* > mengubah tanggal ke hari esoknya dengan fungsi GantiHari
 	* > menghapus makanan kadaluarsa dengan memanfaatkan fungsi evaluateInvOlahan dan evaluateInvMentah
 	* > mengubah energi (integer) ke 10 }
 	begin
-		date:=GantiHari(date); //ganti hari ke esoknya
-		energi:=10; //mengubah energi ke 10
-		evaluateInvOlahan(InvOl,date); //menghapus bahan makanan yang kadaluarsa dari inventori olahan
-		evaluateInvMentah(InvMen,date,raw); //menghapus bahan makanan yang kadaluarsa dari inventori mentah
-		harihidup:=harihidup+1;
+		if (aktivitas=0) then
+			begin
+			date:=GantiHari(date); //ganti hari ke esoknya
+			energi:=10; //mengubah energi ke 10
+			evaluateInvOlahan(InvOl,date); //menghapus bahan makanan yang kadaluarsa dari inventori olahan
+			evaluateInvMentah(InvMen,date,raw); //menghapus bahan makanan yang kadaluarsa dari inventori mentah
+			harihidup:=harihidup+1;
+			countistirahat:=0;
+			countmakan:=0;
+			aktivitas:=1;
+			end
+		else
+			begin
+				writeln('Anda belum beraktivitas hari ini! Anda tidak bisa tidur sebelum beraktivitas');
+			end;
 	end;
 
 end.
