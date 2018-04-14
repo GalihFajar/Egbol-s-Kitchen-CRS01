@@ -22,6 +22,10 @@ interface
 	{I.S.: Tersedia suatu tipe bahan mentah dan tanggal HARI INI}
 	{F.S.: Memberikan output true ketika bahan mentah kadaluarsa dan false ketika belum kadaluarsa}
 
+	function isKabisat(a:integer):boolean;
+	{I.S.: Tersedia suatu bilangan yang menyatakan tahun}
+	{F.S.: Mengembalikan nilai true ketika tahun kabisat dan false ketika tidak}
+
 
 implementation
 	

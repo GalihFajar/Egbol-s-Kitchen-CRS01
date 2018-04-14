@@ -60,3 +60,5 @@ implementation
 		writeln('Total pengeluaran: ',simul.TotalPengeluaran);
 		writeln('Total uang: ', simul.TotalUang);
 	end;
+
+end.
