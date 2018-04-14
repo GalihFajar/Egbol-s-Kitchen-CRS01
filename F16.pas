@@ -48,7 +48,7 @@ implementation
           write('Bahan ',i,' : ');readln(masukan.TabResep[max].Olah[i]); //Memasukan data bahan mentah ke array bahan mentah.
           if(searchSemuaV1(masukan.TabResep[max].Olah[i],x,y) = False) then
             begin
-              write('Bahan tidak ada, ulangi masukan.');
+              writeln	('Bahan tidak ada, ulangi masukan.');
               repeat
                 write('Bahan ',i,' : ');readln(masukan.TabResep[max].Olah[i]);
                 if (searchSemuaV1(masukan.TabResep[max].Olah[i],x,y) = False) then
