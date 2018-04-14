@@ -27,7 +27,8 @@ begin
   readln(search); 									// Membaca nama resep yang dicari dari input pengguna
   writeln; 											// Menuliskan newline di layar
   writeln('Hasil Pencarian Resep :'); 				// Menuliskan 'Hasil Pencarian Resep :' di layar
-  status:=false;
+  status:=false;                // mengassign nilai False ke variabel status
+
   // Melakukan pengulangan sebanyak jumlah resep
   for i:=1 to Input.neff do
   begin
