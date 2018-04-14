@@ -7,7 +7,7 @@ interface
 	
 	uses tipe; // menggunakan unit tipe
 	
-	procedure olahBahan ( var invenmentah : InvMentah ; var involah : InvOlahan ; var olah : Olahan ; t : tanggal ; var energi : longint);
+	procedure olahBahan ( var invenmentah : InvMentah ; var involah : InvOlahan ; var olah : Olahan ; t : tanggal ; var energi : integer);
 	{I.S.: tersedia uang, tanggal, daftar bahan olahan, inventori bahan mentah}
 	{F.S.: Bahan olahan berhasil dibuat, menambah inventori bahan mentah, energi berkurang }
 	function CekUjung( masukan : InvOlahan ):integer; 
@@ -30,7 +30,7 @@ implementation
 				until(masukan.TabInvOlahan[i].Nama = '') //Menambah NEff sampai array kosong.
 		end;
    
-	procedure olahBahan ( var invenmentah : InvMentah ; var involah : InvOlahan ; var olah : Olahan ; t : tanggal ;  var energi : longint);
+	procedure olahBahan ( var invenmentah : InvMentah ; var involah : InvOlahan ; var olah : Olahan ; t : tanggal ;  var energi : integer);
 	{I.S.: tersedia uang, tanggal, daftar bahan olahan, inventori bahan mentah}
 	{F.S.: Bahan olahan berhasil dibuat, menambah inventori bahan mentah, energi berkurang }
 		var

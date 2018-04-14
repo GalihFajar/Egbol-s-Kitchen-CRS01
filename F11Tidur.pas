@@ -55,7 +55,7 @@ implementation
 	{F.S. ganti tanggal ke hari esoknya dengan memanfaatkan fungsi HariMaks}
 	//KAMUS LOKAL
 	var
-		datex.Tanggal;
+		datex:Tanggal;
 	//ALGORITMA
 	begin
 		//pengisian nilai ke variabel lokal
@@ -94,3 +94,5 @@ implementation
 		evaluateInvMentah(InvMen,date,raw); //menghapus bahan makanan yang kadaluarsa dari inventori mentah
 		harihidup:=harihidup+1;
 	end;
+
+end.

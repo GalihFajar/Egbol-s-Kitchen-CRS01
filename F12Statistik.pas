@@ -34,7 +34,7 @@ implementation
 		simul.TotalResepJual:=resepjual;
 		simul.TotalPemasukan:=pemasukan;
 		simul.TotalPengeluaran:=pengeluaran;
-		simul.TotalUang:=uang;
+		simul.TotalPendapatan:=uang;
 	end;
 	
 	//PROCEDURE LihatStatistik
@@ -58,5 +58,7 @@ implementation
 		writeln('Total resep yang dijual: ', simul.TotalResepJual);
 		writeln('Total pemasukan: ', simul.TotalPemasukan);
 		writeln('Total pengeluaran: ',simul.TotalPengeluaran);
-		writeln('Total uang: ', simul.TotalUang);
+		writeln('Total uang: ', simul.TotalPendapatan);
 	end;
+
+end.
