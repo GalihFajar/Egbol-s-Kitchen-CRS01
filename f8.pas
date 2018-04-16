@@ -2,12 +2,12 @@ unit f8;
 
 interface
 	uses searching,tipe,evaluate;
-	procedure jualResep(t:tanggal; a:resepnya; var b:InvMentah; var c:InvOlahan; d:mentah; var uang:longint;var pemasukan:longint;var energi:integer, var banyakResep:integer);
+	procedure jualResep(t:tanggal; a:resepnya; var b:InvMentah; var c:InvOlahan; d:mentah; var uang:longint;var pemasukan:longint;var energi:integer; var banyakResep:integer);
 	{I.S.: tersedia resep yang ingin dibuat, daftar resep, inventory bahan mentah, inventori bahan olahan, uang dan energi}
 	{F.S.: Resep berhasil dibuat bila bahan mentah dan olahan ada. Menambah pemasukan dan mengurangi energi, Menambah jumlah penjualan resep total}
 
 implementation
-	procedure jualResep(t:tanggal; a:resepnya; var b:InvMentah; var c:InvOlahan; d:mentah; var uang:longint;var pemasukan:longint;var energi:integer, var banyakResep:integer);
+	procedure jualResep(t:tanggal; a:resepnya; var b:InvMentah; var c:InvOlahan; d:mentah; var uang:longint;var pemasukan:longint;var energi:integer; var banyakResep:integer);
 	{I.S.: tersedia resep yang ingin dibuat, daftar resep, inventory bahan mentah, inventori bahan olahan, uang dan energi}
 	{F.S.: Resep berhasil dibuat bila bahan mentah dan olahan ada. Menambah pemasukan dan mengurangi energi, Menambah jumlah penjualan resep total}
 	//KAMUS LOKAL
@@ -30,7 +30,10 @@ implementation
 				else
 				begin
 					if (not searchSemua(a.TabResep[indeks],b,c)) then		//Mencari semua bahan yang dibutuhkan untuk membuat resep, True bila semua bahan ditemukan di dalam inventori
+					begin
 						writeln('Bahan yang diperlukan tidak lengkap, pastikan bahan mentah dan bahan olahan ada di dalam inventori') //Pesan kesalahan bila bahan mentah/olahan tidak ditemukan
+						energi:=energi-1;
+					end;
 					else		//Semua bahan telah ditemukan
 					begin
 						kurangiSemua(a.TabResep[indeks],b,c);		//Mengurangi kuantitas semua bahan dengan 1

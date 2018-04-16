@@ -7,7 +7,7 @@ interface
 	
 	uses tipe; // menggunakan unit tipe
 	
-	procedure olahBahan ( var invenmentah : InvMentah ; var involah : InvOlahan ; var olah : Olahan ; t : tanggal ; var energi : integer);
+	procedure olahBahan ( var invenmentah : InvMentah ; var involah : InvOlahan ; var olah : Olahan ; t : tanggal ; var energi : integer ; invMax:integer ; totalolah : integer);
 	{I.S.: tersedia uang, tanggal, daftar bahan olahan, inventori bahan mentah}
 	{F.S.: Bahan olahan berhasil dibuat, menambah inventori bahan mentah, energi berkurang }
 	function CekUjung( masukan : InvOlahan ):integer; 
@@ -30,7 +30,7 @@ implementation
 				until(masukan.TabInvOlahan[i].Nama = '') //Menambah NEff sampai array kosong.
 		end;
    
-	procedure olahBahan ( var invenmentah : InvMentah ; var involah : InvOlahan ; var olah : Olahan ; t : tanggal ;  var energi : integer);
+	procedure olahBahan ( var invenmentah : InvMentah ; var involah : InvOlahan ; var olah : Olahan ; t : tanggal ;  var energi : integer ; invMax:integer ; totalolah : integer);
 	{I.S.: tersedia uang, tanggal, daftar bahan olahan, inventori bahan mentah}
 	{F.S.: Bahan olahan berhasil dibuat, menambah inventori bahan mentah, energi berkurang }
 		var
@@ -39,11 +39,22 @@ implementation
 			indeks : integer;
 			sama : boolean;
 			j : integer;
-			
+			jumlah : integer;
+
 		begin
+			jumlah := 0;
+			for i:=1 to involah.neff do
+				begin
+					jumlah := jumlah + involah.TabInvOlahan[i].Jumlah;
+				end;
+
 			if ( energi = 0 ) then
 				begin
 					writeln('Energi anda habis. Istirahatlah, makan atau tidur terlebih dahulu untuk memulihkan energi'); // Jika energi kosong, maka akan menampilkan output seperti ini, dan tidak melanjutkan proses
+				end
+			else if (invMax < jumlah) then
+				begin
+					writeln('Kapasitas anda penuh');
 				end
 			else
 				begin
@@ -64,9 +75,11 @@ implementation
 			
 				if ( sama = true ) then // jika bahan ada di daftar bahan olahan
 					begin
+						writeln('Pembuatan Bahan Olahan berhasil');
 						involah.TabInvOlahan[max].TglBuat := t; // assign tanggal saat bahan olahan dibuat
 						involah.TabInvOlahan[max].Jumlah := involah.TabInvOlahan[max].Jumlah + 1; // menambah jumlah bahan olahan
-						
+						involah.neff := involah.neff +1;
+						totalolah := totalolah+1;
 						for i:=1 to olah.TabOlahan[indeks].Nbutuh do // loop di dalam array bahan olahan
 							begin
 								for j:=1 to 20 do // untuk mencari dalam array bahan yang dibutuhkan untuk resep

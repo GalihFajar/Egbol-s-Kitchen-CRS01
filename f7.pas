@@ -4,13 +4,13 @@ unit f7;
 interface
 	uses tipe,evaluate;
 
-	procedure jualOlahan(var a:InvOlahan; b:Tanggal; c:Olahan; var pemasukan:longint; var uang:longint; var energi:integer, var banyakJual:integer);
+	procedure jualOlahan(var a:InvOlahan; b:Tanggal; c:Olahan; var pemasukan:longint; var uang:longint; var energi:integer; var banyakJual:integer);
 	{I.S.: Tersedia inventori olahan, tanggal simulasi, pemasukan, uang dan energi chef}
 	{F.S.: Menjual bahan olahan yang ada diinventori, menambah pemasukan dan uang serta mengurangi energi chef, Menambah jumlah kuantitas total penjualan barang olahan}
 
 implementation
 	
-	procedure jualOlahan(var a:InvOlahan; b:Tanggal; c:Olahan; var pemasukan:longint; var uang:longint; var energi:integer, var banyakJual:integer;);
+	procedure jualOlahan(var a:InvOlahan; b:Tanggal; c:Olahan; var pemasukan:longint; var uang:longint; var energi:integer; var banyakJual:integer);
 	{I.S.: Tersedia inventori olahan, tanggal simulasi, pemasukan, uang dan energi chef}
 	{F.S.: Menjual bahan olahan yang ada diinventori, menambah pemasukan dan uang serta mengurangi energi chef, Menambah jumlah kuantitas total penjualan barang olahan}
 	//KAMUS LOKAL
@@ -78,8 +78,10 @@ implementation
 				end;
 
 				if (not ketemu1) then		//Bahan olahan tidak ditemukan di inventori
-				writeln('Bahan olahan tidak ditemukan di inventori, buat bahan olahan terlebih dahulu'); //Pesan kesalahan
-
+				begin
+					writeln('Bahan olahan tidak ditemukan di inventori, buat bahan olahan terlebih dahulu'); //Pesan kesalahan
+					energi:=energi-1;
+				end;
 			end;
 
 		evaluateInvOlahan(a,b);		//Mengevaluasi inventori bahan olahan, menghapus bahan yang sudah habis/kadaluarsa
