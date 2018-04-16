@@ -31,9 +31,9 @@ implementation
 				begin
 					if (not searchSemua(a.TabResep[indeks],b,c)) then		//Mencari semua bahan yang dibutuhkan untuk membuat resep, True bila semua bahan ditemukan di dalam inventori
 					begin
-						writeln('Bahan yang diperlukan tidak lengkap, pastikan bahan mentah dan bahan olahan ada di dalam inventori') //Pesan kesalahan bila bahan mentah/olahan tidak ditemukan
+						writeln('Bahan yang diperlukan tidak lengkap, pastikan bahan mentah dan bahan olahan ada di dalam inventori'); //Pesan kesalahan bila bahan mentah/olahan tidak ditemukan
 						energi:=energi-1;
-					end;
+					end
 					else		//Semua bahan telah ditemukan
 					begin
 						kurangiSemua(a.TabResep[indeks],b,c);		//Mengurangi kuantitas semua bahan dengan 1
