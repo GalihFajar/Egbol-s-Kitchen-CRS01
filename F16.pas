@@ -18,10 +18,12 @@ unit F16;
 interface
   uses tipe;
   procedure tambahResep(x : Mentah; y : Olahan ;var masukan : resepnya); //Prosedur utama menambah resep.
-  procedure TambahBahan(max: integer;batas : integer;x : Mentah; y : Olahan; var masukan : resepnya); //Prosedur menambah bahan mentah.
+  procedure TambahBahan(max: integer;batas : integer;x : Mentah; y : Olahan; var masukan : resepnya; var harga : longint); //Prosedur menambah bahan mentah.
   function CekUjung(masukan : resepnya):integer; //Prosedur cek jumlah resep yang tersedia.
+ 
 implementation
-    
+   uses math;
+   
   function searchMentah(a:Mentah; cari:string):boolean;
   //Fungsi searchMentah menerima masukan array bahan mentah
   //kemudian mencari apakah bahan mentah (cari) ada di dalam array (inventori)
@@ -72,8 +74,37 @@ implementation
       temp2 := searchOlahan(y,input);
       searchSemuaV1 := temp1 or temp2;
   	end;
-
-  procedure TambahBahan(max: integer;batas : integer;x : Mentah; y : Olahan; var masukan : resepnya);
+  	
+  	function cekHarga( a : mentah; b : olahan; xMentah : string; xOlahan : string) : longint;
+		var
+			i : integer;
+			cariMentah : boolean;
+			cariOlahan : boolean;
+			hargaTotal : longint;
+		begin
+			cariMentah := searchMentah(a,xMentah);
+			cariOlahan := searchOlahan(b,xOlahan);
+			hargaTotal := 0;
+			for i := 1 to a.Neff do
+			begin
+				if (cariMentah = true) then
+					begin
+						hargaTotal := hargaTotal + a.TabMentah[i].Harga;
+						cariMentah := false
+				end else
+					hargaTotal := hargaTotal;
+					
+				if (cariOlahan = true) then
+					begin
+						hargaTotal := hargaTotal + b.TabOlahan[i].Harga;
+						cariOlahan := false
+				end else
+					hargaTotal := hargaTotal;
+			end;
+			cekHarga := ceil((12.5/100) * hargaTotal);
+		end;
+			
+  procedure TambahBahan(max: integer;batas : integer;x : Mentah; y : Olahan; var masukan : resepnya; var Harga : longint);
     var
       i : integer;
     begin
@@ -89,6 +120,8 @@ implementation
                   writeln('Bahan tidak ada, ulangi masukan.')
               until (searchSemuaV1(masukan.TabResep[max].Olah[i],x,y) = True);
             end;
+        if ((searchSemuaV1(masukan.TabResep[max].Olah[i],x,y) = True)) then
+				Harga := cekHarga(x,y,masukan.TabResep[max].Olah[i],masukan.TabResep[max].Olah[i]) + Harga;
         end;
     end;
 
@@ -110,16 +143,21 @@ implementation
   procedure tambahResep(x : Mentah; y : Olahan ;var masukan : resepnya);
     var
       max : integer;
+      harga : longint;
     begin
       masukan.Neff := masukan.Neff + 1;
       max := masukan.Neff;
-      write('Nama Resep : ');readln(masukan.TabResep[max].Nama); //Menerima input pengguna berupa nama resep.
-      write('Harga : ');readln(masukan.TabResep[max].Harga); // Menerima input pengguna berupa harga resep (Belum dapat menaksir harga dari konstanta harga bahan mentah).
+      harga := 0;
+      write('Nama Resep : ');readln(masukan.TabResep[max].Nama); //Menerima input pengguna berupa nama resep.   
       repeat
-        write('Jumlah : ');readln(masukan.TabResep[max].NButuh); //Menerima jumlah bahan yang dibutuhkan sampai memenuhi syarat.
+        write('Jumlah Bahan : ');readln(masukan.TabResep[max].NButuh); //Menerima jumlah bahan yang dibutuhkan sampai memenuhi syarat.
       until ((masukan.TabResep[max].NButuh >= 2) and (masukan.TabResep[max].NButuh <= 20));
-
-      TambahBahan(max,masukan.TabResep[max].NButuh,x,y,masukan); //Menerima input pengguna berupa nama bahan yang diperlukan (Belum dapat memvalidasi apakah bahan mentah ada dallam list atau tidak).
+      TambahBahan(max,masukan.TabResep[max].NButuh,x,y,masukan,harga); //Menerima input pengguna berupa nama bahan yang diperlukan (Belum dapat memvalidasi apakah bahan mentah ada dallam list atau tidak).
+      repeat
+		write('Harga (minimal ',harga,' ) : '); readln(masukan.TabResep[max].Harga);
+		if((masukan.TabResep[max].Harga) < harga) then
+		writeln('Harga tidak valid, ulangi masukan.');
+	  until ((masukan.TabResep[max].Harga) >= harga)
     end;
 
 
