@@ -2,7 +2,7 @@ unit f3f4;
 
 interface
 
-	uses tipe,F1load,f2exit,f5,f6,f7,f8,f9,f10,f11tidur{,f12statistik},f13,f14,f15,f16,f17;
+	uses tipe,F1load,f2exit,f5,f6,f7,f8,f9,f10,f11tidur,f12statistik,f13,f14,f15,f16,f17;
 
 	procedure simulasi(var tabBahanMentah : Mentah; var tabBahanOlahan : Olahan; var tabInvenMentah : InvMentah; var tabInvenOlahan : InvOlahan;
 				var tabResepnya : Resepnya; var tabSimulasi : tSimulasi);
@@ -54,39 +54,65 @@ implementation
 	
 	write('>>');
 	readln(n);
-	while not(n='Stop') do
+	while not(n='Stop') and (hhidup<=10) do
 	begin
 		case n of
 			'Beli bahan'		: 	begin
 										belibahan(date, duid, energi, tabInvenMentah, tabBahanMentah, pengeluaran, invenmax, sumbelimentah);
 										aktivitas:=0;
+										writeln('Energi anda : ', energi);
+										writeln('Uang anda : ', duid);
+										writeln('Tanggal : ', date.Hari, date.Bulan, date.Tahun);
+										writeln('Hari hidup : ', hhidup);
 									end;
 			'Olah bahan'		: 	begin
 										olahBahan(tabInvenMentah,tabInvenOlahan, tabBahanOlahan, date, energi, invenmax, sumOlahbuat);
 										aktivitas:=0;
+										writeln('Energi anda : ', energi);
+										writeln('Uang anda : ', duid);
+										writeln('Tanggal : ', date.Hari, date.Bulan, date.Tahun);
+										writeln('Hari hidup : ', hhidup);
 									end;
 			'Jual olahan'		:	begin
 										jualOlahan(tabInvenOlahan, date, tabBahanOlahan, pemasukan, duid, energi, sumolahjual);
 										aktivitas:=0;
+										writeln('Energi anda : ', energi);
+										writeln('Uang anda : ', duid);
+										writeln('Tanggal : ', date.Hari, date.Bulan, date.Tahun);
+										writeln('Hari hidup : ', hhidup);
 									end;
 			'Jual resep'		:	begin
 										jualResep(date, tabResepnya, tabInvenMentah, tabInvenOlahan, tabBahanMentah, duid, pemasukan, energi, sumresepjual);
 										aktivitas:=0;
+										writeln('Energi anda : ', energi);
+										writeln('Uang anda : ', duid);
+										writeln('Tanggal : ', date.Hari, date.Bulan, date.Tahun);
+										writeln('Hari hidup : ', hhidup);
 									end;
 			'Makan'				:	begin
 										makan(energi,countmakan,emax);
 										aktivitas:=0;
+										writeln('Energi anda : ', energi);
+										writeln('Uang anda : ', duid);
+										writeln('Tanggal : ', date.Hari, date.Bulan, date.Tahun);
+										writeln('Hari hidup : ', hhidup);
 									end;
 			'Istirahat'			:	begin
 										istirahat(energi,countist,emax);
 										aktivitas:=0;
+										writeln('Energi anda : ', energi);
+										writeln('Tanggal : ', date.Hari, date.Bulan, date.Tahun);
+										writeln('Hari hidup : ', hhidup);
 									end;
 			'Tidur'				:	begin
 										Tidur(date, tabInvenOlahan, tabInvenMentah, tabBahanMentah, energi, hhidup, countmakan, countist, aktivitas);
+										writeln('Energi anda : ', energi);
+										writeln('Tanggal : ', date.Hari, date.Bulan, date.Tahun);
+										writeln('Hari hidup : ', hhidup);
 									end;
-			//'Lihat statistik'	: 	begin
-			//							Lihatstatistik(simul, date, harihidup, energi, capacity);
-			//						end;
+			'Lihat statistik'	: 	begin
+										LihatStatistik(tabSimulasi.Tab[noSim],date,hhidup,energi,invenmax,SumBeliMentah,SumOlahBuat,sumOlahJual,sumResepJual,pemasukan,pengeluaran);
+									end;
 			'Tampilkan inventory':	begin
 										TampilkanInventory(tabInvenMentah,tabInvenOlahan);
 										aktivitas:=0;
@@ -123,7 +149,7 @@ implementation
 	tabSimulasi.tab[noSim].TotalPengeluaran		:=pengeluaran;
 	tabSimulasi.tab[noSim].TotalPendapatan		:=tabSimulasi.tab[noSim].TotalPemasukan - tabSimulasi.tab[noSim].TotalPengeluaran;
 	tabSimulasi.tab[noSim].TotalPengeluaran		:=pengeluaran;
-	{Lihatstatistik(tabSimulasi);}
+	LihatStatistik(tabSimulasi.Tab[noSim],date,hhidup,energi,invenmax,SumBeliMentah,SumOlahBuat,sumOlahJual,sumResepJual,pemasukan,pengeluaran);
 
 end;
 end.

@@ -9,6 +9,7 @@ c:InvOlahan;
 d:Mentah;
 e:tSimulasi;
 f:Olahan;
+g:simulasi;
 energi:integer;
 uang:longint;
 pemasukan,pengeluaran:longint;
@@ -16,6 +17,8 @@ t:tanggal;
 countmakan,countist:integer;
 emax,aktivitas:integer;
 hhidup,kapasitas:integer;
+TotalJualOlahan,TotalJualResep:integer;
+
 
 begin
 	uang:=10000;
@@ -24,6 +27,8 @@ begin
 	hhidup:=1;
 	kapasitas:=25;
 	countmakan:=0; countist:=0; emax:=10;
+	TotalJualResep:=0;
+	TotalJualOlahan:=0;
 	write('Masukin tanggal cok: '); readln(t.hari);
 	write('Masukin bulan cok: ');	readln(t.bulan);
 	write('Masukin tahun cok: '); readln(t.tahun);
@@ -33,26 +38,26 @@ begin
 	writeln(energi);
 
 	writeln('====Testing F8====');
-	jualResep(t,a,b,c,d,uang,pemasukan,energi);
+	jualResep(t,a,b,c,d,uang,pemasukan,energi,TotalJualResep);
 	writeln('Uang: ',uang);
 	writeln('pemasukan: ',pemasukan);
 	writeln('energi: ',energi);
 	writeln();	
 
 	writeln('====Testing F5====');
-	belibahan(t,uang,energi,b,d,pengeluaran);
+	belibahan(t,uang,energi,b,d,pengeluaran,e);
 	writeln('Uang: ',uang);
 	writeln('pengeluaran: ',pengeluaran);
 	writeln('energi: ',energi);
 	writeln();
 
 	writeln('====testing F6====');
-	olahBahan(b,c,f,t,energi);
+	olahBahan(b,c,f,t,energi,e);
 	writeln('energi: ',energi);
 	writeln();
 
 	writeln('====Testing F7====');
-	jualOlahan(c,t,f,pemasukan,uang,energi);
+	jualOlahan(c,t,f,pemasukan,uang,energi,TotalJualOlahan);
 	writeln('Uang: ',uang);
 	writeln('pemasukan: ',pemasukan);
 	writeln('energi: ',energi);

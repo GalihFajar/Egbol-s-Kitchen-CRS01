@@ -4,12 +4,12 @@ interface
 
 uses tipe;
 procedure exit (var tabBahanMentah : Mentah; var tabBahanOlahan : Olahan; var tabInvenMentah : InvMentah; var tabInvenOlahan : InvOlahan; 
-				var tabResepnya : Resepnya; var tabSimulasi : tSimulasi; reseptemp:tempresep);
+				var tabResepnya : Resepnya; var tabSimulasi : tSimulasi);
 
 implementation
 
 procedure exit (var tabBahanMentah : Mentah; var tabBahanOlahan : Olahan; var tabInvenMentah : InvMentah; var tabInvenOlahan : InvOlahan; 
-				var tabResepnya : Resepnya; var tabSimulasi : tSimulasi; reseptemp:tempresep);
+				var tabResepnya : Resepnya; var tabSimulasi : tSimulasi);
 
 var
 	ext		: Text;
@@ -49,7 +49,7 @@ rewrite(ext);
 	for i:=1 to tabInvenMentah.Neff do
 		begin
 			writeln(ext, tabInvenMentah.TabInvMentah[i].Nama);
-			writeln(ext, tabInvenMentah.TabInvMentah[i].Tgl.hari, tabInvenMentah.TabInvMentah[i].Tgl.bulan, tabInvenMentah.TabInvMentah[i].Tgl.tahun);
+			writeln(ext, tabInvenMentah.TabInvMentah[i].Tgl.hari, ' ', tabInvenMentah.TabInvMentah[i].Tgl.bulan, ' ', tabInvenMentah.TabInvMentah[i].Tgl.tahun);
 			writeln(ext, tabInvenMentah.TabInvMentah[i].Jumlah);
 			writeln(ext, skip);
 		end;
@@ -60,7 +60,7 @@ rewrite(ext);
 	for i:=1 to tabInvenOlahan.Neff do
 		begin
 			writeln(ext, tabInvenOlahan.TabInvOlahan[i].Nama);
-			writeln(ext, tabInvenOlahan.TabInvOlahan[i].TglBuat.hari, tabInvenOlahan.TabInvOlahan[i].TglBuat.bulan, tabInvenOlahan.TabInvOlahan[i].TglBuat.tahun);
+			writeln(ext, tabInvenOlahan.TabInvOlahan[i].TglBuat.hari, ' ', tabInvenOlahan.TabInvOlahan[i].TglBuat.bulan, ' ', tabInvenOlahan.TabInvOlahan[i].TglBuat.tahun);
 			writeln(ext, tabInvenOlahan.TabInvOlahan[i].Jumlah);
 			writeln(ext, skip);
 		end;
@@ -77,6 +77,7 @@ rewrite(ext);
 				begin
 					writeln(ext, tabResepnya.TabResep[i].Olah[j]);
 				end;
+			writeln(ext, skip);
 		end;
 		close(ext);
 		
@@ -85,7 +86,7 @@ rewrite(ext);
 	for i:=1 to tabSimulasi.Neff do
 		begin
 			writeln(ext, tabSimulasi.Tab[i].Nomor);
-			writeln(ext, tabSimulasi.Tab[i].Tgl.hari, tabSimulasi.Tab[i].Tgl.bulan, tabSimulasi.Tab[i].Tgl.tahun);
+			writeln(ext, tabSimulasi.Tab[i].Tgl.hari, ' ', tabSimulasi.Tab[i].Tgl.bulan, ' ', tabSimulasi.Tab[i].Tgl.tahun);
 			writeln(ext, tabSimulasi.Tab[i].HariHidup);
 			writeln(ext, tabSimulasi.Tab[i].Energi);
 			writeln(ext, tabSimulasi.Tab[i].KapasitasInventory);

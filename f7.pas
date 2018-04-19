@@ -55,7 +55,7 @@ implementation
 									a.TabInvOlahan[u].jumlah:=a.TabInvOlahan[u].jumlah-jumlah;	//Mengurangi jumlah di inventori dengan jumlah yang dijual
 									energi:=energi-1;											//Mengurangi energi dengan 1
 
-									v:=1;			//Inisialisasi variabel perulangan kedua
+									v:=1;											//Inisialisasi variabel perulangan kedua
 									ketemu2:=false;
 
 									while (v<=c.Neff) and (not ketemu2) do 			//Mencari harga bahan olahan dari array Olahan(berisi informasi tentang kadaluarsa, harga dan resep bahan olahan)

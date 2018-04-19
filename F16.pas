@@ -90,16 +90,14 @@ implementation
 				if (cariMentah = true) then
 					begin
 						hargaTotal := hargaTotal + a.TabMentah[i].Harga;
-						cariMentah := false
-				end else
-					hargaTotal := hargaTotal;
+						cariMentah := false;
+				end;
 					
 				if (cariOlahan = true) then
 					begin
 						hargaTotal := hargaTotal + b.TabOlahan[i].Harga;
-						cariOlahan := false
-				end else
-					hargaTotal := hargaTotal;
+						cariOlahan := false;
+				end;
 			end;
 			cekHarga := ceil((12.5/100) * hargaTotal);
 		end;
@@ -154,10 +152,10 @@ implementation
       until ((masukan.TabResep[max].NButuh >= 2) and (masukan.TabResep[max].NButuh <= 20));
       TambahBahan(max,masukan.TabResep[max].NButuh,x,y,masukan,harga); //Menerima input pengguna berupa nama bahan yang diperlukan (Belum dapat memvalidasi apakah bahan mentah ada dallam list atau tidak).
       repeat
-		write('Harga (minimal ',harga,' ) : '); readln(masukan.TabResep[max].Harga);
-		if((masukan.TabResep[max].Harga) < harga) then
-		writeln('Harga tidak valid, ulangi masukan.');
-	  until ((masukan.TabResep[max].Harga) >= harga)
+      		write('Harga (minimal ',harga,' ) : '); readln(masukan.TabResep[max].Harga);
+      		if((masukan.TabResep[max].Harga) < harga) then
+      		writeln('Harga tidak valid, ulangi masukan.');
+	    until ((masukan.TabResep[max].Harga) >= harga)
     end;
 
 
