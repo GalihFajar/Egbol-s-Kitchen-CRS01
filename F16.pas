@@ -172,7 +172,9 @@ implementation
       max := masukan.Neff;
       write('Nama Resep : ');readln(masukan.TabResep[max].Nama); //Menerima input pengguna berupa nama resep.   
       repeat
-        write('Jumlah Bahan : ');readln(masukan.TabResep[max].NButuh); //Menerima jumlah bahan yang dibutuhkan sampai memenuhi syarat.
+        write('Jumlah Bahan Penyusun : ');readln(masukan.TabResep[max].NButuh); //Menerima jumlah bahan yang dibutuhkan sampai memenuhi syarat.
+        if ((masukan.TabResep[max].NButuh) < 2) then
+			writeln('Minimal 2 bahan penyusun.');
       until ((masukan.TabResep[max].NButuh >= 2) and (masukan.TabResep[max].NButuh <= 20));
       TambahBahan(max,masukan.TabResep[max].NButuh,x,y,masukan); //Menerima input pengguna berupa nama bahan yang diperlukan (Belum dapat memvalidasi apakah bahan mentah ada dallam list atau tidak).
       harga := cekHarga(masukan,max,masukan.TabResep[max].Nbutuh,x,y);
