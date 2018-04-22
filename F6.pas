@@ -1,6 +1,6 @@
 unit F6;
 // unit untuk mengolah bahan mentah menjadi bahan olahan, mengurangi bahan mentah -> menambah inventori bahan olahan -> mengurangi energi chef
-// Versi : 13 April 2018
+// Versi : 22 April 2018
 //
 
 interface
@@ -40,8 +40,10 @@ implementation
 			sama : boolean;
 			j : integer;
 			jumlah : integer;
+			cekinvent : boolean;
 
 		begin
+			cekinvent := true;
 			jumlah := 0;
 			for i:=1 to involah.neff do
 				begin
@@ -59,7 +61,7 @@ implementation
 			else
 				begin
 					max := CekUjung(involah) + 1; // menggunakan fungsi cek ujung kemudian menambahkan satu array lagi untuk diisi
-					writeln('Bahan Olahan yang akan dibuat'); readln(involah.TabInvOlahan[max].Nama); // Mengisi array untuk nama bahan olahan yang ingin dibuat
+					write('Bahan Olahan yang akan dibuat : '); read(involah.TabInvOlahan[max].Nama); // Mengisi array untuk nama bahan olahan yang ingin dibuat
 					indeks:=0; 
 					sama:=false; // assign boolean untuk membantu validasi
 					involah.TabInvOlahan[max].Jumlah := 0; // asumsikan bahan olahan yang ingin dibuat ada 0
@@ -71,24 +73,57 @@ implementation
 								sama := true;
 							end;
 					end;
-						
+				
 			
 				if ( sama = true ) then // jika bahan ada di daftar bahan olahan
 					begin
-						writeln('Pembuatan Bahan Olahan berhasil');
-						involah.TabInvOlahan[max].TglBuat := t; // assign tanggal saat bahan olahan dibuat
-						involah.TabInvOlahan[max].Jumlah := involah.TabInvOlahan[max].Jumlah + 1; // menambah jumlah bahan olahan
-						involah.neff := involah.neff +1;
-						totalolah := totalolah+1;
-						for i:=1 to olah.TabOlahan[indeks].Nbutuh do // loop di dalam array bahan olahan
-							begin
-								for j:=1 to 20 do // untuk mencari dalam array bahan yang dibutuhkan untuk resep
-									begin
-										if ( olah.TabOlahan[indeks].bahan[i] = invenmentah.TabInvMentah[j].Nama ) then // mencari bahan yang dibutuhkan untuk bahan olahan
+							i:=1;
+							j:=1;
+							while ( i <= olah.TabOlahan[indeks].Nbutuh ) and (cekinvent = true ) do // untuk cek apakah bahan yang dibutuhkan ada di inventory mentah atau tidak
+								begin
+									repeat
+										if ( olah.TabOlahan[indeks].bahan[i] = invenmentah.TabInvMentah[j].Nama) then
 											begin
-												invenmentah.TabInvMentah[j].Jumlah := invenmentah.TabInvMentah[j].Jumlah - 1 ; // jika ada, mengurangi bahan mentah -1
+												cekinvent := true; // akan meng assign true jika bahan yang dibutuhkan ada di inventory bahan mentah
+											end
+										else
+											begin
+												cekinvent := false; // akan meng assign false jika bahan tidak ada
+												j := j+1;
+											end;
+									until ( cekinvent = true ) or ( j > invenmentah.Neff ); // merepeat sampai pada kondisi cekinvent = true atau j sudah melebihi neff dari inventory bahan mentah
+										if ( cekinvent = true ) then
+											begin
+												i:=i+1;
+											end
+										else
+										if ( j > invenmentah.Neff ) then
+											begin
+												cekinvent := false;	
+											end;
+								end;
+							
+						if (cekinvent) then // jika bahan yang digunakan ada
+							begin
+								writeln('Pembuatan Bahan Olahan berhasil');
+								involah.TabInvOlahan[max].TglBuat := t; // assign tanggal saat bahan olahan dibuat
+								involah.TabInvOlahan[max].Jumlah := involah.TabInvOlahan[max].Jumlah + 1; // menambah jumlah bahan olahan
+								involah.neff := involah.neff +1;
+								totalolah := totalolah+1;
+								for i:=1 to olah.TabOlahan[indeks].Nbutuh do // loop di dalam array bahan olahan
+									begin
+										for j:=1 to 20 do // untuk mencari dalam array bahan yang dibutuhkan untuk resep
+											begin
+												if ( olah.TabOlahan[indeks].bahan[i] = invenmentah.TabInvMentah[j].Nama ) then // mencari bahan yang dibutuhkan untuk bahan olahan
+													begin
+														invenmentah.TabInvMentah[j].Jumlah := invenmentah.TabInvMentah[j].Jumlah - 1 ; // jika ada, mengurangi bahan mentah -1
+													end;
 											end;
 									end;
+							end
+						else // cekinven = false atau bahan yang digunakan tidak ada
+							begin
+								writeln('Bahan yang digunakan tidak ada'); 
 							end;
 					end
 				else // jika bahan yang ingin dibuat tidak ada di daftar bahan olahan

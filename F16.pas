@@ -124,55 +124,70 @@ function searchSemuaV1(input : string; x : Mentah; y : Olahan):boolean;
 function cekHarga( masukan : resepnya; parameter : integer; parameterOlah : integer; a : mentah; b : olahan) : longint;
 	{Fungsi menerima masukan berupa resep.
 	* Fungsi mengembalikan nilai berupa harga minimum (12,5 % lebih mahal dari harga penyusun.}
+	
+{KAMUS LOKAL}
 	var
 		j : integer; //Variabel indeks bahan mentah/bahan olahan pada array bahan mentah/bahan olahan.
 		i : integer; //Variabel indeks bahan penyusun pada array resep.
 		hargaTotal : longint; //Variabel harga total.
+	
+{ALGORITMA LOKAL}	
 	begin
-		hargaTotal := 0;
+		hargaTotal := 0; //Inisiasi harga awal
 		for i := 1 to parameterOlah do
 		begin
 			if (searchMentah(a,masukan.TabResep[parameter].Olah[i])) then 
 				begin
-					j := posisiMentah(a,masukan.TabResep[parameter].Olah[i]);
-					hargaTotal := hargaTotal + a.TabMentah[j].Harga;
+					j := posisiMentah(a,masukan.TabResep[parameter].Olah[i]); //Assign indeks harga.
+					hargaTotal := hargaTotal + a.TabMentah[j].Harga; //Menambah harga total.
 				end 
 				else if (searchOlahan(b,masukan.TabResep[parameter].Olah[i])) then
 					begin
-						j := posisiOlahan(b,masukan.TabResep[parameter].Olah[i]);
-						hargaTotal := hargaTotal + b.TabOlahan[j].Harga;
+						j := posisiOlahan(b,masukan.TabResep[parameter].Olah[i]); //Assign indeks harga.
+						hargaTotal := hargaTotal + b.TabOlahan[j].Harga; //Menambah harga total.
 					end;
 		end;
-		cekHarga := ceil((112.5/100) * hargaTotal);
+		cekHarga := ceil((112.5/100) * hargaTotal); //Perhitungan harga minimum dan pembulatan ke atas.
 end;
 			
-  procedure TambahBahan(max: integer;batas : integer;x : Mentah; y : Olahan; var masukan : resepnya);
+ procedure TambahBahan(max: integer;batas : integer;x : Mentah; y : Olahan; var masukan : resepnya);
+  {I.S. tersedia array bahan pada resep}
+  {F.S. array bahan pada resep telah terisi}
+
+{KAMUS LOKAL}
     var
       i : integer;
+      
+{ALGORITMA LOKAL}    
     begin
       for i := 1 to batas do
         begin
-          write('Bahan ',i,' : ');readln(masukan.TabResep[max].Olah[i]); //Memasukan data bahan mentah ke array bahan mentah.
-          if(searchSemuaV1(masukan.TabResep[max].Olah[i],x,y) = False) then
+          write('Bahan ',i,' : ');readln(masukan.TabResep[max].Olah[i]); //Memasukkan data bahan mentah ke array.
+          if(searchSemuaV1(masukan.TabResep[max].Olah[i],x,y) = False) then //Jika Tidak ada, akan divalidasi.
             begin
-              writeln	('Bahan tidak ada, ulangi masukan.');
+              writeln	('Bahan tidak ada, ulangi masukan.'); 
               repeat
                 write('Bahan ',i,' : ');readln(masukan.TabResep[max].Olah[i]);
                 if (searchSemuaV1(masukan.TabResep[max].Olah[i],x,y) = False) then
                   writeln('Bahan tidak ada, ulangi masukan.')
               until (searchSemuaV1(masukan.TabResep[max].Olah[i],x,y) = True);
-              //if (searchSemuaV1(masukan.TabResep[max].Olah[i],x,y) = True)
             end;
         end;
     end;
 
   procedure tambahResep(x : Mentah; y : Olahan ;var masukan : resepnya);
+  {I.S. Tersedia array daftar resep, array bahan mentah, dan array bahan olahan}
+  {F.S. Menambah daftar resep}
+
+{KAMUS LOKAL}
     var
       max : integer;
       harga : longint;
+ 
+ {ALGORITMA LOKAL}   
     begin
-      masukan.Neff := masukan.Neff + 1;
-      max := masukan.Neff;
+      masukan.Neff := masukan.Neff + 1; //Indek Neff ditambah 1
+      max := masukan.Neff; //Indeks array yang siap diisi
       write('Nama Resep : ');readln(masukan.TabResep[max].Nama); //Menerima input pengguna berupa nama resep.   
       repeat
         write('Jumlah Bahan Penyusun : ');readln(masukan.TabResep[max].NButuh); //Menerima jumlah bahan yang dibutuhkan sampai memenuhi syarat.
@@ -180,9 +195,9 @@ end;
 			writeln('Minimal 2 bahan penyusun.');
       until ((masukan.TabResep[max].NButuh >= 2) and (masukan.TabResep[max].NButuh <= 20));
       TambahBahan(max,masukan.TabResep[max].NButuh,x,y,masukan); //Menerima input pengguna berupa nama bahan yang diperlukan (Belum dapat memvalidasi apakah bahan mentah ada dallam list atau tidak).
-      harga := cekHarga(masukan,max,masukan.TabResep[max].Nbutuh,x,y);
+      harga := cekHarga(masukan,max,masukan.TabResep[max].Nbutuh,x,y); //Assign harga minimal resep.
       repeat
-		write('Harga (minimal ',harga,' ) : '); readln(masukan.TabResep[max].Harga);
+		write('Harga (minimal ',harga,' ) : '); readln(masukan.TabResep[max].Harga); //Jika harga masukan < harga minimal, validasi
 		if((masukan.TabResep[max].Harga) < harga) then
 		writeln('Harga tidak valid, ulangi masukan.');
 	  until ((masukan.TabResep[max].Harga) >= harga)
