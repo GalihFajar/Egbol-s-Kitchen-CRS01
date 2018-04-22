@@ -3,7 +3,7 @@ Nasi Putih
 2
 Beras
 Air
-
+ 
 Nasi Goreng
 2000
 5
@@ -12,3 +12,9 @@ Air
 Bawang Putih
 Lada
 Kecap
+
+Sosis
+1000
+2
+Daging Sapi
+Bawang Putih

@@ -10,15 +10,17 @@ var
 	tabSim: tSimulasi;
 	resepp: Resepnya; 
 	perintah:string;
+	x : string;
 	
 begin
 load(MentahU,OlahanU,InvenMentah,InvenOlahan,resepp,tabSim);
 repeat
 	begin
 	write('>');
-	readln(perintah);
+	readln(x);
 	writeln();
-	if (perintah='startSimulasi') then
+	perintah := LowerCase(x);
+	if (perintah='start simulasi') then
 		simulasi(MentahU,OlahanU,InvenMentah,InvenOlahan,resepp,tabSim)
 	else if (perintah<>'exit') then
 		writeln('Perintah Tidak tepat, Silahkan mulai simulasi atau exit program');

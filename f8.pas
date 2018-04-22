@@ -41,6 +41,7 @@ implementation
 						pemasukan:=pemasukan+a.TabResep[indeks].harga;	//Menambah pemasukan
 						energi:=energi-1;							//Mengurangi energi
 						banyakResep:=banyakResep+1;
+						writeln('Resep berhasil dibuat dan dijual');
 					end;
 				end;
 			end;

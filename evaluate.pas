@@ -166,7 +166,7 @@ implementation
 		u3:=1;		//inisialisasi awal variabel perulangan
 		while (u3<=a.neff) do	//Perulangan selama u3 masih kurang dari neff
 		begin
-			if (isKadaluarsaOlahan(a.TabInvOlahan[u3],b)) or (a.TabInvOlahan[u3].jumlah=0) then		//Bahan kadaluarsa atau jumlahnya 0
+			if (isKadaluarsaOlahan(a.TabInvOlahan[u3],b)) or (a.TabInvOlahan[u3].jumlah<=0) then		//Bahan kadaluarsa atau jumlahnya 0
 			begin
 				geserOlahan(a,u3);		//Menghapus elemen array ke u6 dan menggeser semua elemen array
 			end
@@ -186,7 +186,7 @@ implementation
 		u6:=1;		//Inisialisasi awal variabel pengulangan
 		while (u6<=a.neff) do		//pengulangan ketika u6 masih kurang dari neff
 		begin
-			if (isKadaluarsaMentah(a.TabInvMentah[u6],b,c)) or (a.TabInvMentah[u6].jumlah=0) then		//Bahan mentah kadaluarsa atau jumlahnya 0
+			if (isKadaluarsaMentah(a.TabInvMentah[u6],b,c)) or (a.TabInvMentah[u6].jumlah<=0) then		//Bahan mentah kadaluarsa atau jumlahnya 0
 			begin
 				geserMentah(a,u6);		//Menghapus elemen array ke u6 dan menggeser semua elemen array
 			end
