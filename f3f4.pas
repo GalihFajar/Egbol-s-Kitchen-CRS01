@@ -93,7 +93,7 @@ implementation
 	write('>>');
 	readln(n);
 	x := LowerCase(n);
-	while not(x='Stop') and (hhidup<=10) do
+	while not(x='Stop') and (hhidup<10) do
 	begin
 		case x of
 			'beli bahan'		: 	begin
