@@ -6,7 +6,7 @@ interface
 
 	uses tipe; 		   // menggunakan unit yang berisi tipe
 	
-	procedure belibahan ( t : tanggal ; var uang : longint; var energi : integer; var bahan : InvMentah ; var bmentah : Mentah ; var pengeluaran : longint ; invMax:integer ;var totalbel : integer );
+	procedure belibahan ( t : tanggal ; var uang : longint; var energi : integer; var bahan : InvMentah ; var bmentah : Mentah ; var pengeluaran : longint ; invMax:integer ;var  totalbel : integer );
 	{I.S.: tersedia uang, tanggal, daftar bahan mentah, inventori bahan mentah}
 	{F.S.: Resep berhasil dibuat bila bahan yang ingin dibeli ada di daftar bahan mentah. Menambah inventori bahan mentah dan mengurangi energi & uang}
 	function CekUjung(masukan : InvMentah):integer;
@@ -28,7 +28,7 @@ implementation
 				until(masukan.TabInvMentah[i].Nama = '') //Menambah NEff sampai array kosong.
 		end;
 	
-	procedure belibahan ( t : tanggal ; var uang : longint; var energi : integer; var bahan : InvMentah ; var bmentah : Mentah ; var pengeluaran : longint ; invMax:integer ;var totalbel : integer);
+	procedure belibahan ( t : tanggal ; var uang : longint; var energi : integer; var bahan : InvMentah ; var bmentah : Mentah ; var pengeluaran : longint ; invMax:integer ;var  totalbel : integer);
 	{I.S.: tersedia uang, tanggal, daftar bahan mentah, inventori bahan mentah}
 	{F.S.: Resep berhasil dibuat bila bahan yang ingin dibeli ada di daftar bahan mentah. Menambah inventori bahan mentah dan mengurangi energi & uang}
 		var // kamus lokal
@@ -39,7 +39,6 @@ implementation
 			harga : integer;
 			indeks : integer;
 			jumlah : integer;
-			temp:string;
 		begin // Algoritma lokal
 			jumlah := 0;
 			for i:= 1 to bahan.neff do
@@ -61,10 +60,10 @@ implementation
 					sama := false; // assign boolean untuk membantu validasi
 					harga := 0; // assign harga awal
 					indeks := 0;
-					write('NamaBahan: ');readln(temp); // menerima masukan bahan untuk array max
+					write('Nama Bahan : ');read(bahan.TabInvMentah[max].Nama); // menerima masukan bahan untuk array max
 					for i:=1 to bmentah.neff do
 						begin
-							if ( temp = bmentah.TabMentah[i].Nama ) and ( sama = false ) and ( invMax > jumlah) then // pengecekan apakah bahan yang ingin dibeli sama ada di list bahan mentah atau tidak
+							if ( bahan.TabInvMentah[max].Nama = bmentah.TabMentah[i].Nama ) and ( sama = false ) and ( invMax > jumlah) then // pengecekan apakah bahan yang ingin dibeli sama ada di list bahan mentah atau tidak
 								begin
 									sama := true; 
 									harga := bmentah.TabMentah[i].harga;
@@ -79,24 +78,31 @@ implementation
 						end
 					else // sama = true, ada nama bahan yang diinput user didalam data bahanmentah
 						begin
-							write('Kuantitas : ');readln(kuantitas);
-							write('Total Harga : ');writeln(kuantitas*harga);
-							if ( uang >= kuantitas*harga ) then // jika uang yang dimiliki tidak cukup untuk membeli bahan
-								begin
-									writeln('Pembelian Sukses');
-									bahan.TabInvMentah[max].Nama := bmentah.TabMentah[indeks].Nama;
-									bahan.TabInvMentah[max].Tgl := t;
-									bahan.TabInvMentah[max].Jumlah := kuantitas;
-									uang := uang - (kuantitas*harga);
-									pengeluaran := pengeluaran + (kuantitas*harga);
-									energi := energi-1;	
-									bahan.neff := bahan.neff+1;
-									totalbel := totalbel + kuantitas;
-								end
-							else // ( uang < harga )
-								begin 
-									writeln('Pembelian gagal, silahkan coba lagi, uang anda kurang');
-									energi := energi-1;		
+							write('Kuantitas : ');read(kuantitas);
+								if ( (kuantitas + jumlah) > InvMax ) then 
+									begin
+										writeln('Inventory anda tidak cukup');
+									end
+								else
+									begin
+										write('Total Harga : ');writeln(kuantitas*harga);
+										if ( uang >= kuantitas*harga ) then // jika uang yang dimiliki tidak cukup untuk membeli bahan
+											begin
+												writeln('Pembelian Sukses');
+												bahan.TabInvMentah[max].Nama := bmentah.TabMentah[indeks].Nama;
+												bahan.TabInvMentah[max].Tgl := t;
+												bahan.TabInvMentah[max].Jumlah := kuantitas;
+												uang := uang - (kuantitas*harga);
+												pengeluaran := pengeluaran + (kuantitas*harga);
+												energi := energi-1;	
+												bahan.neff := bahan.neff+1;
+												totalbel := totalbel + kuantitas;
+											end
+										else // ( uang < harga )
+											begin 
+												writeln('Pembelian gagal, silahkan coba lagi, uang anda kurang');
+												energi := energi-1;		
+											end;
 								end;
 						end;
 					end;

@@ -49,7 +49,7 @@ implementation
 	
 	pemasukan:=tabSimulasi.tab[noSim].TotalPemasukan;
 	pengeluaran:=tabSimulasi.tab[noSim].TotalPengeluaran;
-	duid:=100000+pemasukan-pengeluaran;
+	duid:=pemasukan-pengeluaran;
 	countmakan:=0;
 	countist:=0;
 	aktivitas:=1;
@@ -88,12 +88,14 @@ implementation
 	writeln('Menambah resep');
 	writeln('13. Upgrade Inventory');
 	writeln('Menambah kapasitas inventory');
+	writeln('14. Stop');
+	writeln('Menghentikan Simulasi.');
 	writeln('Masukan perintah');
 	writeln;
 	write('>>');
 	readln(n);
 	x := LowerCase(n);
-	while not(x='Stop') and (hhidup<10) do
+	while not(x='stop') and (hhidup<10) do
 	begin
 		case x of
 			'beli bahan'		: 	begin
@@ -192,7 +194,7 @@ implementation
 										aktivitas:=0;
 										writeln;
 									end;
-			'upgrade Inventory'	:	begin
+			'upgrade inventory'	:	begin
 										writeln;
 										upgradeInventori(invenmax, duid, energi);
 										aktivitas:=0;
