@@ -5,160 +5,193 @@ interface
 uses tipe;
 procedure load (var tabBahanMentah : Mentah; var tabBahanOlahan : Olahan; var tabInvenMentah : InvMentah; var tabInvenOlahan : InvOlahan; 
 				var tabResepnya : Resepnya; var tabSimulasi : tSimulasi);
+{I.S. : Menerima inputan berupa sebuah variabel yang bertipekan bentukan yang tersedia di unit tipe}
+{F.S. : Memuat semua data yang ada di file eksternal ke dalam array yang akan digunakan di program utama}
 
 implementation
 
 procedure load (var tabBahanMentah : Mentah; var tabBahanOlahan : Olahan; var tabInvenMentah : InvMentah; var tabInvenOlahan : InvOlahan; 
 				var tabResepnya : Resepnya; var tabSimulasi : tSimulasi);
-
+{I.S. : Menerima inputan berupa sebuah variabel yang bertipekan bentukan yang tersedia di unit tipe}
+{F.S. : Memuat semua data yang ada di file eksternal ke dalam array yang akan digunakan di program utama}
+//Kamus Lokal
 var
 	ext		: Text;
 	j		: Integer;
 	skip	: String;
-
+//Algoritma
 begin
-skip:=' ';
-	assign(ext, 'BahanMentah.txt'); //assign file bahan mentah
-	reset(ext);
-	tabBahanMentah.neff:=0;
-	if EOF(ext) then
+skip:=' ';							//Inisiasi skip
+	assign(ext, 'BahanMentah.txt'); //Assign file bahan mentah
+	reset(ext); 					//Set file eksternal agar bisa dibaca
+	tabBahanMentah.neff:=0; 		//Inisiasi nilai neff
+	if EOF(ext) then				//Validasi file kosong, jika kosong mengeluarkan output file kosong
 		begin
-			writeln('File kosong');
+			writeln('File BahanMentah.txt kosong');	//Menuliskan pesan file kosong
 		end
 	else
 		begin
-		while not(EOF(ext)) do
+		while not(EOF(ext)) do 	//Melakukan perulangan selama belum end of file
 			begin
-				inc(tabBahanMentah.neff); //jika tidak kosong, neff naik
-				readln(ext, tabBahanMentah.tabMentah[tabBahanMentah.neff].Nama); //input ke array
-				readln(ext, tabBahanMentah.tabMentah[tabBahanMentah.neff].Harga);//sama
-				readln(ext, tabBahanMentah.tabMentah[tabBahanMentah.neff].Kadaluarsa);//sama
-				readln(ext, skip);//nyekip file eksternalnya 
+				inc(tabBahanMentah.neff); 												//Menambah nilai neff
+				readln(ext, tabBahanMentah.tabMentah[tabBahanMentah.neff].Nama); 		//Memasukan data di file eksternal ke array
+				readln(ext, tabBahanMentah.tabMentah[tabBahanMentah.neff].Harga); 		//Memasukan data di file eksternal ke array
+				readln(ext, tabBahanMentah.tabMentah[tabBahanMentah.neff].Kadaluarsa);	//Memasukan data di file eksternal ke array
+				readln(ext, skip);														//Memberi pembatas antar data
 			end;
-			writeln('File BahanMentah.txt terbaca');
+			writeln('File BahanMentah.txt terbaca'); //Menuliskan pesan bahwa file berhasil di load
 		end;
-	close(ext);//close
+	close(ext); //Close file eksternal
 	
-	assign(ext,'BahanOlahan.txt'); //assign file bahan olahan
-	reset(ext); //ngeset lah ya
-	tabBahanOlahan.neff:=0; 
-	if EOF(ext) then
+	assign(ext,'BahanOlahan.txt'); 	//Assign file bahan olahan
+	reset(ext);						//Set file eksternal agar bisa dibaca
+	tabBahanOlahan.neff:=0;			//Inisiasi nilai neff
+	if EOF(ext) then				//Validasi file kosong, jika kosong mengeluarkan output file kosong
 		begin
-			writeln('File kosong');//kalo kosong
+			writeln('File BahanOlahan.txt kosong');	//Menuliskan pesan file kosong
 		end
 	else
 		begin
-		while not (EOF(ext)) do
+		while not (EOF(ext)) do //Melakukan perulangan selama belum end of file
 			begin
-				inc(tabBahanOlahan.neff); //kalo ga kosong, berarti neffnya nambah
-				readln(ext, tabBahanOlahan.tabOlahan[tabBahanOlahan.neff].Nama); //input ke array
-				readln(ext, tabBahanOlahan.tabOlahan[tabBahanOlahan.neff].Harga); 
-				readln(ext, tabBahanOlahan.tabOlahan[tabBahanOlahan.neff].NButuh);
-					for j:=1 to tabBahanOlahan.tabOlahan[tabBahanOlahan.neff].NButuh do
+				inc(tabBahanOlahan.neff); 											//Menambah nilai neff
+				readln(ext, tabBahanOlahan.tabOlahan[tabBahanOlahan.neff].Nama); 	//Memasukan data di file eksternal ke array
+				readln(ext, tabBahanOlahan.tabOlahan[tabBahanOlahan.neff].Harga); 	//Memasukan data di file eksternal ke array
+				readln(ext, tabBahanOlahan.tabOlahan[tabBahanOlahan.neff].NButuh);	//Memasukan data di file eksternal ke array
+					for j:=1 to tabBahanOlahan.tabOlahan[tabBahanOlahan.neff].NButuh do	//Melakukan perulangan
 						begin
-							readln(ext, tabBahanOlahan.tabOlahan[tabBahanOlahan.neff].bahan[j]);
+							readln(ext, tabBahanOlahan.tabOlahan[tabBahanOlahan.neff].bahan[j]); //Memasukan data di file eksternal ke array
 						end;
-				readln(ext, skip); //nyekip
+				readln(ext, skip); 													//Memberi pembatas antar data
 			end;
-			writeln('File BahanOlahan.txt terbaca');
+			writeln('File BahanOlahan.txt terbaca'); //Menuliskan pesan bahwa file berhasil di load
 		end;
-	close(ext);
+	close(ext); //Close file eksternal
 	
-	assign(ext,'InvMentah.txt');
-	reset(ext);
-	tabInvenMentah.neff:=0;
-	if EOF(ext) then
+	assign(ext,'InvMentah.txt');	//Assign file inventory mentah
+	reset(ext); 					//Set file eksternal agar bisa dibaca
+	tabInvenMentah.neff:=0;			//Inisiasi nilai neff
+	if EOF(ext) then				//Validasi file kosong, jika kosong mengeluarkan output file kosong
 		begin
-			writeln('File kosong');
+			writeln('File BahanOlahan.txt kosong');	//Menuliskan pesan file kosong
 		end
 	else
 		begin
-		while not (EOF(ext)) do
+		while not (EOF(ext)) do		//Melakukan perulangan selama belum end of file
 			begin
-				inc(tabInvenMentah.neff);
-				readln(ext, tabInvenMentah.TabInvMentah[tabInvenMentah.neff].Nama);
-				readln(ext, tabInvenMentah.TabInvMentah[tabInvenMentah.neff].Tgl.hari, tabInvenMentah.TabInvMentah[tabInvenMentah.neff].Tgl.bulan, tabInvenMentah.TabInvMentah[tabInvenMentah.neff].Tgl.tahun);
-				readln(ext, tabInvenMentah.TabInvMentah[tabInvenMentah.neff].Jumlah);
-				readln(ext, skip);
+				inc(tabInvenMentah.neff);												//Menambah nilai neff
+				readln(ext, tabInvenMentah.TabInvMentah[tabInvenMentah.neff].Nama);		//Memasukan data di file eksternal ke array
+				readln(ext, tabInvenMentah.TabInvMentah[tabInvenMentah.neff].Tgl.hari, 	//Memasukan data di file eksternal ke array
+				tabInvenMentah.TabInvMentah[tabInvenMentah.neff].Tgl.bulan, 
+				tabInvenMentah.TabInvMentah[tabInvenMentah.neff].Tgl.tahun);
+				readln(ext, tabInvenMentah.TabInvMentah[tabInvenMentah.neff].Jumlah);	//Memasukan data di file eksternal ke array
+				readln(ext, skip);														//Memberi pembatas antar data
 			end;
-			writeln('File InventoryMentah.txt sudah terbaca');
+			writeln('File InvMentah.txt sudah terbaca');	//Menuliskan pesan bahwa file berhasil di load
 		end;
-	close(ext);
+	close(ext); //Close file eksternal
 	
-	assign(ext,'InvOlahan.txt');
-	reset(ext);
-	tabInvenOlahan.neff:= 0;
-	if EOF(ext) then
+	assign(ext,'InvOlahan.txt');	//Assign file inventory olahan
+	reset(ext);						//Set file eksternal agar bisa dibaca
+	tabInvenOlahan.neff:= 0;		//Inisiasi nilai neff
+	if EOF(ext) then				//Validasi file kosong, jika kosong mengeluarkan output file kosong
 		begin
-			writeln('File Kosong');
+			writeln('File InvOlahan.txt kosong');	//Menuliskan pesan file kosong
 		end
 	else
 		begin
-		while not(EOF(ext)) do
+		while not(EOF(ext)) do		//Melakukan perulangan selama belum end of file
 			begin
 				inc(tabInvenOlahan.neff);
-				readln(ext, tabInvenOlahan.TabInvOlahan[tabInvenOlahan.neff].Nama);
-				readln(ext, tabInvenOlahan.TabInvOlahan[tabInvenOlahan.neff].TglBuat.hari, tabInvenOlahan.TabInvOlahan[tabInvenOlahan.neff].TglBuat.bulan, tabInvenOlahan.TabInvOlahan[tabInvenOlahan.neff].TglBuat.tahun);
-				readln(ext, tabInvenOlahan.TabInvOlahan[tabInvenOlahan.neff].Jumlah);
-				readln(ext, skip);
+				readln(ext, tabInvenOlahan.TabInvOlahan[tabInvenOlahan.neff].Nama);			//Menambah nilai neff
+				readln(ext, tabInvenOlahan.TabInvOlahan[tabInvenOlahan.neff].TglBuat.hari,	//Memasukan data di file eksternal ke array
+				tabInvenOlahan.TabInvOlahan[tabInvenOlahan.neff].TglBuat.bulan,
+				tabInvenOlahan.TabInvOlahan[tabInvenOlahan.neff].TglBuat.tahun);
+				readln(ext, tabInvenOlahan.TabInvOlahan[tabInvenOlahan.neff].Jumlah);		//Memasukan data di file eksternal ke array
+				readln(ext, skip);															//Memberi pembatas antar data
 			end;
-			writeln('File InventoryOlahan.txt sudah terbaca');
+			writeln('File InvOlahan.txt terbaca'); 	//Menuliskan pesan bahwa file berhasil di load
 		end;
-	close(ext);
+	close(ext);	//Close file eksternal
 	
-	assign(ext,'Resep.txt');
-	reset(ext);
-	tabResepnya.neff:=0;
-	if EOF(ext) then
+	assign(ext,'Resep.txt');		//Assign file resep
+	reset(ext);						//Set file eksternal agar bisa dibaca
+	tabResepnya.neff:=0;			//Inisiasi nilai neff
+	if EOF(ext) then				//Validasi file kosong, jika kosong mengeluarkan output file kosong
 		begin
-			writeln('File Kosong');
+			writeln('File Resep.txt kosong');	//Menuliskan pesan file kosong
 		end
 	else
 		begin
-		while not(EOF(ext)) do
+		while not(EOF(ext)) do		//Melakukan perulangan selama belum end of file
 			begin
-				inc(tabResepnya.neff);
-				readln(ext, tabResepnya.TabResep[tabResepnya.neff].Nama);
-				readln(ext, tabResepnya.TabResep[tabResepnya.neff].Harga);
-				readln(ext, tabResepnya.TabResep[tabResepnya.neff].NButuh);
-					for j:=1 to tabResepnya.TabResep[tabResepnya.neff].NButuh do
+				inc(tabResepnya.neff);										//Menambah nilai neff
+				readln(ext, tabResepnya.TabResep[tabResepnya.neff].Nama);	//Memasukan data di file eksternal ke array
+				readln(ext, tabResepnya.TabResep[tabResepnya.neff].Harga);	//Memasukan data di file eksternal ke array
+				readln(ext, tabResepnya.TabResep[tabResepnya.neff].NButuh);	//Memasukan data di file eksternal ke array
+					for j:=1 to tabResepnya.TabResep[tabResepnya.neff].NButuh do	//Melakukan perulangan
 						begin
-							readln(ext, tabResepnya.TabResep[tabResepnya.neff].Olah[j]);
+							readln(ext, tabResepnya.TabResep[tabResepnya.neff].Olah[j]); //Memasukan data di file eksternal ke array
 						end;
-					readln(ext, skip);
+					readln(ext, skip);										//Memberi pembatas antar data
 			end;
-			writeln('File Resep.txt sudah terbaca');
+			writeln('File Resep.txt terbaca');	//Menuliskan pesan bahwa file berhasil di load
 		end;
-	close(ext);
+	close(ext);	//Close file eksternal
 
-	assign(ext, 'Simulasi.txt');
-	reset(ext);
-	tabSimulasi.neff:=0;
-	if EOF(ext) then
+	assign(ext, 'Simulasi.txt');		//Assign file simulasi
+	reset(ext);							//Set file eksternal agar bisa dibaca
+	tabSimulasi.neff:=0;				//Inisiasi nilai neff
+	if EOF(ext) then					//Validasi file kosong, jika kosong mengeluarkan output file kosong
 		begin
-			writeln('File kosong');
+			writeln('File Simulasi.txt kosong');		//Menuliskan pesan file kosong
 		end
 	else 
 		begin
-			while not(EOF(ext)) do
+			while not(EOF(ext)) do		//Melakukan perulangan selama belum end of file
 				begin
-					inc(tabSimulasi.neff);
-					readln(ext, tabSimulasi.Tab[tabSimulasi.neff].Nomor);
-					readln(ext, tabSimulasi.Tab[tabSimulasi.neff].Tgl.hari, tabSimulasi.Tab[tabSimulasi.neff].Tgl.bulan, tabSimulasi.Tab[tabSimulasi.neff].Tgl.tahun);
-					readln(ext, tabSimulasi.Tab[tabSimulasi.neff].HariHidup);
-					readln(ext, tabSimulasi.Tab[tabSimulasi.neff].Energi);
-					readln(ext, tabSimulasi.Tab[tabSimulasi.neff].KapasitasInventory);
-					readln(ext, tabSimulasi.Tab[tabSimulasi.neff].TotalBeliMentah);
-					readln(ext, tabSimulasi.Tab[tabSimulasi.neff].TotalOlahBuat);
-					readln(ext, tabSimulasi.Tab[tabSimulasi.neff].TotalOlahJual);
-					readln(ext, tabSimulasi.Tab[tabSimulasi.neff].TotalResepJual);
-					readln(ext, tabSimulasi.Tab[tabSimulasi.neff].TotalPemasukan);
-					readln(ext, tabSimulasi.Tab[tabSimulasi.neff].TotalPengeluaran);
-					readln(ext, tabSimulasi.Tab[tabSimulasi.neff].TotalPendapatan);
-					readln(ext, skip);
+					inc(tabSimulasi.neff);												//Menambah nilai neff
+					readln(ext, tabSimulasi.Tab[tabSimulasi.neff].Nomor);				//Memasukan data di file eksternal ke array
+					readln(ext, tabSimulasi.Tab[tabSimulasi.neff].Tgl.hari,				//Memasukan data di file eksternal ke array
+					tabSimulasi.Tab[tabSimulasi.neff].Tgl.bulan,
+					tabSimulasi.Tab[tabSimulasi.neff].Tgl.tahun);
+					readln(ext, tabSimulasi.Tab[tabSimulasi.neff].HariHidup);			//Memasukan data di file eksternal ke array
+					readln(ext, tabSimulasi.Tab[tabSimulasi.neff].Energi);				//Memasukan data di file eksternal ke array
+					readln(ext, tabSimulasi.Tab[tabSimulasi.neff].KapasitasInventory);	//Memasukan data di file eksternal ke array
+					readln(ext, tabSimulasi.Tab[tabSimulasi.neff].TotalBeliMentah);		//Memasukan data di file eksternal ke array
+					readln(ext, tabSimulasi.Tab[tabSimulasi.neff].TotalOlahBuat);		//Memasukan data di file eksternal ke array
+					readln(ext, tabSimulasi.Tab[tabSimulasi.neff].TotalOlahJual);		//Memasukan data di file eksternal ke array
+					readln(ext, tabSimulasi.Tab[tabSimulasi.neff].TotalResepJual);		//Memasukan data di file eksternal ke array
+					readln(ext, tabSimulasi.Tab[tabSimulasi.neff].TotalPemasukan);		//Memasukan data di file eksternal ke array
+					readln(ext, tabSimulasi.Tab[tabSimulasi.neff].TotalPengeluaran);	//Memasukan data di file eksternal ke array
+					readln(ext, tabSimulasi.Tab[tabSimulasi.neff].TotalPendapatan);		//Memasukan data di file eksternal ke array
+					readln(ext, skip);													//Memberi pembatas antar data
 				end;
-				writeln('File Simulasi.txt terbaca');
+				writeln('File Simulasi.txt terbaca');	//Menuliskan pesan bahwa file berhasil di load
 		end;
-	close(ext);
+	close(ext);	//Close file eksternal
+Writeln;
+Writeln('                        /$$                                                     /$$');	//Menuliskan pesan selamat datang
+writeln('                        | $$                                                    | $$');
+writeln(' /$$  /$$  /$$  /$$$$$$ | $$  /$$$$$$$  /$$$$$$  /$$$$$$/$$$$   /$$$$$$        /$$$$$$    /$$$$$$');
+writeln('| $$ | $$ | $$ /$$__  $$| $$ /$$_____/ /$$__  $$| $$_  $$_  $$ /$$__  $$      |_  $$_/   /$$__  $$');
+writeln('| $$ | $$ | $$| $$$$$$$$| $$| $$      | $$  \ $$| $$ \ $$ \ $$| $$$$$$$$        | $$    | $$  \ $$');
+writeln('| $$ | $$ | $$| $$_____/| $$| $$      | $$  | $$| $$ | $$ | $$| $$_____/        | $$ /$$| $$  | $$');
+writeln('|  $$$$$/$$$$/|  $$$$$$$| $$|  $$$$$$$|  $$$$$$/| $$ | $$ | $$|  $$$$$$$        |  $$$$/|  $$$$$$/');
+writeln(' \_____/\___/  \_______/|__/ \_______/ \______/ |__/ |__/ |__/ \_______/         \___/   \______/ ');
+writeln;
+writeln;
+writeln(' /$$$$$$$$                     /$$ /$$              /$$   /$$ /$$   /$$               /$$');
+writeln('| $$_____/                    |__/| $/             | $$  /$$/|__/  | $$              | $$');
+writeln('| $$       /$$$$$$$   /$$$$$$  /$$|_//$$$$$$$      | $$ /$$/  /$$ /$$$$$$    /$$$$$$$| $$$$$$$   /$$$$$$  /$$$$$$$');
+writeln('| $$$$$   | $$__  $$ /$$__  $$| $$  /$$_____/      | $$$$$/  | $$|_  $$_/   /$$_____/| $$__  $$ /$$__  $$| $$__  $$');
+writeln('| $$__/   | $$  \ $$| $$  \ $$| $$ |  $$$$$$       | $$  $$  | $$  | $$    | $$      | $$  \ $$| $$$$$$$$| $$  \ $$');
+writeln('| $$      | $$  | $$| $$  | $$| $$  \____  $$      | $$\  $$ | $$  | $$ /$$| $$      | $$  | $$| $$_____/| $$  | $$');
+writeln('| $$$$$$$$| $$  | $$|  $$$$$$$| $$  /$$$$$$$/      | $$ \  $$| $$  |  $$$$/|  $$$$$$$| $$  | $$|  $$$$$$$| $$  | $$');
+writeln('|________/|__/  |__/ \____  $$|__/ |_______/       |__/  \__/|__/   \___/   \_______/|__/  |__/ \_______/|__/  |__/');
+writeln('                     /$$  \ $$');
+writeln('                    |  $$$$$$/');
+writeln('                     \______/');
+writeln;
 end;
 end.
