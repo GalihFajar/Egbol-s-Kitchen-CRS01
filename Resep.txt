@@ -1,29 +1,63 @@
-Nasi Goreng Sapi
-15000
+Ayam Bakar Kecap
+13000
 2
-Nasi Goreng
-Daging Sapi
- 
-Nasi Sate Ayam
-15000
-3
-Nasi Putih
-Daging Sapi
+Daging Ayam
 Kecap
+ 
+Ayam Bakar Madu
+14000
+2
+Daging Ayam
+Madu
   
-Roti Lapis
+Soto Ayam
 10000
-6
-Roti
-Selada
-Tomat
+7
+Air
+Jahe
+Lengkuas
 Telur
 Garam
-Lada
- 
-Soda Float
-10000
+Tomat
+Daging Ayam
+
+Mie Goreng
+4000
 2
-Es Krim
-Soda
- 
+Mie Instan
+Air
+
+Mie Goreng Telur
+7000
+3
+Mie Instan
+Air
+Telur
+
+Teh Manis
+3000
+3
+Air
+Gula
+Teh
+
+Es Teh Manis
+4000
+4
+Es Batu
+Air
+Gula
+Teh
+
+Es Teh Tawar
+2500
+3
+Es Batu
+Air
+Teh
+
+Teh Tawar
+2000
+2
+Air
+Teh

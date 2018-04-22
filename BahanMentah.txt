@@ -1,32 +1,55 @@
-Daging Sapi
-5000
-10
- 
-Kangkung
-1000
-10
- 
-Lada
-200
-100
- 
-Bawang Putih
-500
-30
- 
+Ayam Mentah
+7000
+2
+
 Air
 500
 100
- 
-Es Krim
-2000
-10
- 
+
 Kecap
 400
-300
- 
-Beras
-500
 100
- 
+
+Daun Teh
+400
+7
+
+Bumbu Penyedap
+1000
+50
+
+Madu
+1000
+30
+
+Jahe
+100
+7
+
+Lengkuas
+100
+10
+
+Telur
+700
+8
+
+Garam
+50
+50
+
+Tomat
+800
+3
+
+Gula
+500
+20
+
+Es Batu
+200
+1
+
+Mie Kering
+2000
+40

@@ -1,20 +1,17 @@
-Nasi Putih
-1200
+Daging Ayam
+9000
 2
-Beras
-Air
+Ayam Mentah
+Bumbu Penyedap
  
-Nasi Goreng
-2000
-5
-Beras
-Air
-Bawang Putih
-Lada
-Kecap
+Mie Instan
+3500
+2
+Mie Kering
+Bumbu Penyedap
 
-Sosis
+Teh
 1000
 2
-Daging Sapi
-Bawang Putih
+Daun Teh
+Air
